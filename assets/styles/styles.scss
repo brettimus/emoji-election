@@ -1,0 +1,25 @@
+$black: #121212;
+$sans-serif: sans-serif;
+$thin: 300;
+
+body {
+  color: $black;
+}
+
+h1,
+h2 {
+  font-family: $sans-serif;
+}
+
+header {
+  padding: 60px;
+  min-height: 240px;
+  small {
+    display: block;
+    font-weight: $thin;
+  }
+}
+
+.text-center {
+  text-align: center;
+}
