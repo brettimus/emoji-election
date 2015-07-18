@@ -108,10 +108,12 @@ npm-debug.log
 twitter-credentials.js
 
 ################################################
-# Logging Scripts
+# Scripts
 #
+# For SSH, analyzing logs
 ################################################
 *logs.sh
+ssh-in.sh
 
 
 ################################################
