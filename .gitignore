@@ -99,6 +99,13 @@ lib-cov
 npm-debug.log
 
 
+################################################
+# Temporary Credentials
+#
+# I am dumb and just want to put creds in this
+# file for a second... delete this eventually.
+################################################
+twitter-credentials.js
 
 
 
