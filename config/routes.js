@@ -36,9 +36,9 @@ module.exports.routes = {
   '/president': {
     view: 'homepage'
   },
-  'post /tweet': {
-    controller: 'Vote',
-    action: 'handleTweet',
+  'post /tweet/create': {
+    controller: 'Tweet',
+    action: 'create',
     cors: {
       origin: "*", // change to where the bot lives
     }
