@@ -7,8 +7,9 @@
 
 module.exports = {
 	create: function(req, res) {
+        console.log("YOOOO");
         var allParams = req.allParams();
-
+        console.log(allParams);
         res.send({
             original_request: allParams,
         });
