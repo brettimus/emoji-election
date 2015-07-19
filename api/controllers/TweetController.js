@@ -9,7 +9,8 @@ module.exports = {
 	create: function(req, res) {
         sails.log.info("RECEIVED REQUEST FROM HOST: ", req.baseUrl);
 
-        var data = req.allParams();
+        var data             = req.allParams(),
+            original_request = data;
 
         Tweet.createFromBotData(data, function(err, tweet) {
             if (err) {
@@ -17,13 +18,17 @@ module.exports = {
                 return somethingWentWrong(res);
             }
 
-            Vote.createIfFromTweet(tweet, function(err, vote, isNew) {
+            Vote.createIfFromTweet(tweet, function(err, vote, data) {
                 if (err) {
                    sails.log("ERROR creating vote from tweet data", err);
                    return somethingWentWrong(res);
                 }
 
-                res.send({original_request: data, isNew: isNew});
+                res.send({
+                    original_request: original_request,
+                    isNew           : data.isNew,
+                    isFirstVote     : data.isFirstVote
+                });
             });
         });
 

@@ -24,46 +24,73 @@ module.exports = {
             voterTwitterId: data.voter.twitter_id,
             candidateTwitterId: data.candidates[0].twitter_id,
         })
-        .exec(_createIfHelper(data, next));
+        .exec(createOrUpdate(data, next));
 
     },
 
     updateFromTweetData: function(vote, data, next) {
-        vote.emoji = data.vote;
 
-        vote.voter          = data.voter.handle;
-        vote.voterTwitterId = data.voter.twitter_id;
+        Vote.findOne({
+            emoji: data.vote,
+            candidateTwitterId: data.candidates[0].twitter_id,
+        })
+        .exec(function(err, similarVote) {
+            if (err) return next(err);
 
-        vote.candidate          = data.candidates[0].handle;
-        vote.candidateTwitterId = data.candidates[0].twitter_id;
+            var isFirstVote = !similarVote;
+        
+            mergeVoteWithData(vote, data);
 
-        vote.tweetTwitterId = data.tweet_id;
+            vote.save(function(err, vote) {
+                next(err, vote, isFirstVote);
+            });
+        });
 
-        vote.save(next);
+
     }
 };
 
-function _createIfHelper(data, next) {
+function createOrUpdate(data, next) {
     // Scopes our db query callback to the tweet data and req callback (next)
     return function(err, vote) {
-           if (err) return next(err);
+            if (err) return next(err);
 
-           var isNew;
+            if (vote) {
+                Vote.updateFromTweetData(vote, data, function(err, modVote, isFirstVote) {
 
-           if (vote) {
-               isNew = false;
-               Vote.updateFromTweetData(vote, data, function(err) {
-                   next(err, vote, isNew);
-               });
-           }
-           else {
-               isNew = true;
-               Vote.create().exec(function(err, vote) {
-                   if (err) return next(err);
-                   Vote.updateFromTweetData(vote, data, function(err) {
-                       next(err, vote, isNew);
-                   });
-               });
-           }
+                    next(err, vote, {
+                        isNew: false,
+                        isFirstVote: isFirstVote,
+                    });
+
+                });
+            }
+
+            else {
+                Vote.create().exec(function(err, vote) {
+                    if (err) return next(err);
+
+                    Vote.updateFromTweetData(vote, data, function(err, modVote, isFirstVote) {
+
+                        next(err, vote, {
+                            isNew: true,
+                            isFirstVote: isFirstVote,
+                        });
+
+                    });
+                });
+            }
     };
+}
+
+function mergeVoteWithData(vote, data) {
+    vote.emoji = data.vote;
+
+    vote.voter          = data.voter.handle;
+    vote.voterTwitterId = data.voter.twitter_id;
+
+    vote.candidate          = data.candidates[0].handle;
+    vote.candidateTwitterId = data.candidates[0].twitter_id;
+
+    vote.tweetTwitterId = data.tweet_id;
 }
