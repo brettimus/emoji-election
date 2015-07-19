@@ -55,29 +55,12 @@ module.exports.connections = {
   ***************************************************************************/
   postgresDev: {
     adapter: 'sails-postgresql',
-    host: 'aamvo5c3lro538.cr4ehuhul6rl.us-west-2.rds.amazonaws.com',
-    port: '5432',
-    user: 'dboots',
-    password: '7Akv9tCdodNo33aS9qEVqme5e',
-    database: 'ebdb'
+    host: process.env.EFP_POSTGRES_HOST,
+    port: process.env.EFP_POSTGRES_PORT,
+    user: process.env.EFP_POSTGRES_USER,
+    password: process.env.EFP_POSTGRES_PW,
+    database: process.env.EFP_POSTGRES_DBNAME
   },
-
-  /***************************************************************************
-  *                                                                          *
-  * PostgreSQL is another officially supported relational database.          *
-  * http://en.wikipedia.org/wiki/PostgreSQL                                  *
-  *                                                                          *
-  * Run: npm install sails-postgresql                                        *
-  *                                                                          *
-  *                                                                          *
-  ***************************************************************************/
-  somePostgresqlServer: {
-    adapter: 'sails-postgresql',
-    host: 'YOUR_POSTGRES_SERVER_HOSTNAME_OR_IP_ADDRESS',
-    user: 'YOUR_POSTGRES_USER',
-    password: 'YOUR_POSTGRES_PASSWORD',
-    database: 'YOUR_POSTGRES_DB'
-  }
 
 
   /***************************************************************************
