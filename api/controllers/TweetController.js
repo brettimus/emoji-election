@@ -7,7 +7,7 @@
 
 module.exports = {
 	create: function(req, res) {
-        sails.log.info("RECEIVED REQUEST FROM HOST: ", req.hostname);
+        sails.log.info("RECEIVED REQUEST FROM HOST: ", req.baseUrl);
 
         var data = req.allParams();
 
@@ -17,7 +17,7 @@ module.exports = {
                 return somethingWentWrong(res);
             }
 
-            Vote.createFromTweet(tweet, function(err, vote, isNew) {
+            Vote.createIfFromTweet(tweet, function(err, vote, isNew) {
                 if (err) {
                    sails.log("ERROR creating vote from tweet data", err);
                    return somethingWentWrong(res);
