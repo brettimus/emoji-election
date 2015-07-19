@@ -35,7 +35,8 @@ module.exports.routes = {
   '/': '/president',
   '/president': {
     view: 'homepage'
-  }
+  },
+  'post /tweet': 'VoteController.handleTweet',
 
 
   /***************************************************************************

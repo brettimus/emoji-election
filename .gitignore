@@ -100,14 +100,6 @@ npm-debug.log
 
 
 ################################################
-# Temporary Credentials
-#
-# I am dumb and just want to put creds in this
-# file for a second... delete this eventually.
-################################################
-twitter-credentials.js
-
-################################################
 # Scripts
 #
 # For SSH, analyzing logs
@@ -115,12 +107,6 @@ twitter-credentials.js
 *logs.sh
 ssh-in.sh
 
-################################################
-# Sass
-#
-# Ignore the cache
-################################################
-.sass-cache*
 
 ################################################
 # Miscellaneous
