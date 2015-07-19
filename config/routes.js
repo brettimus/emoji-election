@@ -32,10 +32,6 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  '/': '/president',
-  '/president': {
-    view: 'homepage'
-  },
   'post /tweet/create': {
     controller: 'Tweet',
     action: 'create',
@@ -44,6 +40,13 @@ module.exports.routes = {
     }
   },
 
+  '/president': {
+    view: 'homepage'
+  },
+  '/results': {
+    view: 'results'
+  },
+  '/': '/president',
 
   /***************************************************************************
   *                                                                          *
