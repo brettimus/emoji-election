@@ -7,6 +7,8 @@
 
 module.exports = {
 	create: function(req, res) {
+        sails.log.info("RECEIVED REQUEST FROM HOST: ", req.hostname);
+
         var data = req.allParams();
 
         Tweet.createFromBotData(data, function(err, tweet) {
