@@ -9,7 +9,9 @@ module.exports = {
 	handleTweet: function(req, res) {
         var text = req.param("text");
         console.log("HOLY SHIT I GOTS IT: ", text);
-        res.send("Dude");
+        res.send({
+            text: 'DUDE',
+        });
     }
 };
 
