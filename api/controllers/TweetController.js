@@ -13,6 +13,7 @@ module.exports = {
             original_request = data;
 
         Tweet.createFromBotData(data, function(err, tweet) {
+
             if (err) {
                 sails.log("ERROR creating tweet from bot data", err);
                 return somethingWentWrong(res);
@@ -20,7 +21,7 @@ module.exports = {
 
             Vote.createIfFromTweet(tweet, function(err, vote, data) {
                 if (err) {
-                   sails.log("ERROR creating vote from tweet data", err);
+                   sails.log("ERROR creating vote from tweet model", err);
                    return somethingWentWrong(res);
                 }
 
