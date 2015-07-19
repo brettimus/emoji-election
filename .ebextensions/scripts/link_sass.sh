@@ -1,1 +1,0 @@
-PATH="/opt/elasticbeanstalk/lib:${PATH}"
