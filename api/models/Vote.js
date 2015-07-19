@@ -7,8 +7,21 @@
 
 module.exports = {
 
-  attributes: {
+    attributes: {
+        emoji: "STRING",
+        voter: "STRING",
+        candidate: "STRING",
+    },
 
-  },
+    createFromTweet: function(tweet, next) {
+        var data = tweet.data;
+        Vote.create().exec(function(err, vote) {
+            if (err) return next(err);
+            vote.emoji = data.vote;
+            vote.voter = data.voter;
+            vote.candidate = data.candidates && data.candidates[0];
+            vote.save(next);
+        });
+    }
 };
 
