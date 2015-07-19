@@ -36,7 +36,13 @@ module.exports.routes = {
   '/president': {
     view: 'homepage'
   },
-  'post /tweet': 'VoteController.handleTweet',
+  'post /tweet': {
+    controller: 'Vote',
+    action: 'handleTweet',
+    cors: {
+      origin: "*", // change to where the bot lives
+    }
+  },
 
 
   /***************************************************************************
