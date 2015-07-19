@@ -67,6 +67,21 @@ module.exports.connections = {
 
   /***************************************************************************
   *                                                                          *
+  * The development database                                                 *
+  *                                                                          *
+  *                                                                          *
+  ***************************************************************************/
+  postgresDev: {
+    adapter: 'sails-postgresql',
+    host: 'localhost',
+    port: '5432',
+    user: '',
+    password: '',
+    database: 'emoji_for_president_dev'
+  },
+
+  /***************************************************************************
+  *                                                                          *
   * PostgreSQL is another officially supported relational database.          *
   * http://en.wikipedia.org/wiki/PostgreSQL                                  *
   *                                                                          *
