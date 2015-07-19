@@ -8,20 +8,50 @@
 module.exports = {
 
     attributes: {
-        emoji: "STRING",
-        voter: "STRING",
-        candidate: "STRING",
+        emoji              : "STRING",
+        voter              : "STRING",
+        voterTwitterId     : "STRING",
+        candidate          : "STRING",
+        candidateTwitterId : "STRING",
+        tweetTwitterId     : "STRING",
     },
 
     createFromTweet: function(tweet, next) {
         var data = tweet.data;
-        Vote.create().exec(function(err, vote) {
+        var voterTwitterId = data.voter.twitter_id;
+        Vote.findOneByVoterTwitterId(voterTwitterId).exec(function(err, vote) {
             if (err) return next(err);
-            vote.emoji = data.vote;
-            vote.voter = data.voter;
-            vote.candidate = data.candidates && data.candidates[0];
-            vote.save(next);
+            var isNew;
+            if (vote) {
+                isNew = false;
+                Vote.updateFromTweetData(vote, data, function(err) {
+                    next(err, vote, isNew);
+                });
+            }
+            else {
+                isNew = true;
+                Vote.create().exec(function(err, vote) {
+                    if (err) return next(err);
+                    Vote.updateFromTweetData(vote, data, function(err) {
+                        next(err, vote, isNew);
+                    });
+                });
+            }
         });
+    },
+
+    updateFromTweetData: function(vote, data, next) {
+        vote.emoji = data.vote;
+
+        vote.voter = data.voter && data.voter.handle;
+        vote.voterTwitterId = data.voter && data.voter.twitter_id;
+
+        vote.candidate = data.candidates && data.candidates[0].handle;
+        vote.candidateTwitterId = data.candidates && data.candidates[0].twitter_id;
+
+        vote.tweetTwitterId = data.tweet_id;
+
+        vote.save(next);
     }
 };
 

@@ -14,10 +14,9 @@ module.exports = {
     },
 
     createFromBotData: function(data, next) {
-        var tweet = Tweet.create();
-        tweet.exec(function(err, model) {
+        Tweet.create().exec(function(err, model) {
             if (err) return next(err);
-            model.data = JSON.stringify(data);
+            model.data = data;
             model.save(next);
         });
     },
