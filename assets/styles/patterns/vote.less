@@ -1,0 +1,43 @@
+.vote {
+    padding-bottom: 2em;
+}
+
+.vote-title {
+    font-size: 2em;
+    color: #222;
+    margin-bottom: 0.2em;
+    small {
+        font-size: .8em;
+        font-weight: @normal;
+        opacity: .8;
+    }
+
+    a {
+        &.vote-democrat {
+            color: @blue;
+        }
+        &.vote-republican {
+            color: @red;
+        }
+        &.vote-independent {
+            color: @green;
+        }
+    }
+}
+.vote-icon {
+    border-radius: 50px;
+    color: @charcoal;
+    float: left;
+    margin-right: 1em;
+    opacity: .5;
+}
+
+.vote-meta {
+    color: #959595;
+    font-size: 90%;
+    margin: 0;
+    // padding-top: .2em;
+    a {
+        color: @charcoal;
+    }
+}

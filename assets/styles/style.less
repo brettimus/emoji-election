@@ -1,0 +1,201 @@
+// http://coolors.co/app/50514f-f25f5c-a5d8ff-247ba0-70c1b3
+
+// Colors
+//  - Primary
+@red   : #F25f5c;
+@blue  : #247ba0;
+@white : #fff;
+//  - Secondary
+@black    : #232323;
+@grey     : #686868;
+@green    : #70c1b3;
+@charcoal : #50514f;
+
+@display        : "Jacques Francois Shadow", cursive;
+@serif          : "Jacques Francois Shadow", serif;
+@slab           : "Roboto Slab", serif;
+@sans-serif     : 'Source Sans Pro', sans-serif;
+@sans-serif-alt : 'Text Me One', sans-serif;
+
+@light  : 300;
+@normal : 400;
+@semi   : 600;
+@heavy  : 900;
+
+@sidebar-bg    : @blue;
+@link-color    : @red;
+@tagline-color : rgb(176, 202, 219);
+@tagline-color : darken(@white, 10%);
+
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+h1,
+h2 {
+    font-family: @sans-serif;
+}
+
+h3 {
+    font-weight: @light;
+}
+
+a {
+    color: @link-color;
+    text-decoration: none;    
+    &:hover,
+    &:focus {
+        text-decoration: underline;
+    }
+}
+
+/* LAYOUT CSS */
+
+.pure-img-responsive {
+    max-width: 100%;
+    height: auto;
+}
+
+#layout {
+    padding: 0;
+}
+
+.header {
+    text-align: center;
+    top: auto;
+    margin: 3em auto;
+}
+
+.topbar {
+    background: @sidebar-bg;
+    color: @white;
+}
+
+.brand-img {
+    display: block;
+    height: 120px;
+    margin: -30px auto 0 auto;
+}
+.brand-title,
+.brand-tagline {
+    margin: 0;
+}
+.brand-title {
+    font-family: @slab;
+    letter-spacing: .08em;
+    padding-bottom: 32px;
+    text-transform: uppercase;
+
+    small {
+        font-family: @sans-serif;
+        font-size: .7em;
+        font-weight: @light;
+        letter-spacing: .02em;
+    }
+}
+.brand-tagline {
+    font-weight: 300;
+    color: @tagline-color;
+}
+
+.nav-list {
+    margin: 0;
+    padding: 20px 0 20px 0;
+    list-style: none;
+}
+.nav-item {
+    display: inline-block;
+    *display: inline;
+    zoom: 1;
+}
+.nav-item {
+    font-family: @sans-serif;
+
+    a {
+        background: @red;
+        border: 2px solid @white;
+        color: @white;
+        font-size: 1.5em;
+        letter-spacing: 0.05em;
+        margin-top: 1em;
+        text-transform: uppercase;
+        
+        &:hover,
+        &:focus {
+            border: 2px solid darken(@white, 10%);
+            text-decoration: none;            
+        }
+    }
+    &.nav-item-secondary {
+
+        a {
+            background: transparent;
+            border-color: darken(@white, 6%);
+            color: @white;
+
+            &:hover,
+            &:focus {
+                border-color: @white;
+                background: @white;
+                color: @blue;
+            }
+        }
+    }
+}
+
+.content-subhead {
+    border-bottom: 1px solid #eee;
+    color: @black;
+    font-family: @sans-serif;
+    font-size: 1.4em;
+    font-weight: @normal;
+    letter-spacing: 0.05em;
+    padding: 0.4em 0;
+}
+
+.content {
+    padding: 2em 1em 0;
+    margin: 0 auto;
+    max-width: 768px;
+}
+
+
+
+// ipad mini
+@media only screen 
+  and (min-width: 480px) {
+
+  .topbar {
+    min-height: 200px;
+    padding: 60px;
+  }
+  .brand-title {
+    font-size: 2.4em;
+  }
+}
+
+// desktop
+@media only screen 
+  and (min-width: 768px) {
+    
+  .topbar {
+    min-height: 220px;
+  }
+  .brand-title {
+    font-size: 2.9em;
+  }
+
+}
+
+// desktop - bigggg
+@media only screen 
+  and (min-width: 1000px) {
+    
+  // .topbar {
+  // }
+
+
+
+}

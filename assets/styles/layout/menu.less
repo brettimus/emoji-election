@@ -1,0 +1,56 @@
+.home-menu {
+    background: darken(@blue, 20%);
+    box-shadow: 0 1px 1px rgba(0,0,0, 0.10);
+    padding: 0.5em;
+    text-align: right;
+
+    .brand-icon {
+        display: block;
+        float: left;
+        height: 40px;
+    }
+
+    .pure-menu-heading {
+        color: white;
+        font-size: 120%;
+        font-weight: 400;
+    }
+
+    .pure-menu-selected a {
+        color: white;
+    }
+
+    a {
+        color: @red;
+    }
+}
+.pure-menu {
+    &.pure-menu-fixed {
+        // border-bottom: solid 1px @white;
+        /* I need a higher z-index here because of the scroll-over effect. */
+        z-index: 4;
+    }
+
+    .pure-menu-link {
+        border: solid 1px transparent;
+        &:hover,
+        &:focus {
+            background: transparent;
+            border: solid 1px @white;
+            border-radius: 6px;
+            box-sizing: border-box;
+        }
+    }
+}
+
+
+
+.home-menu {
+    li a:hover,
+    li a:focus {
+        background: transparent;
+        border: solid 1px @white;
+        border-radus: 6px;
+        // color: #AECFE5;
+    }
+}
