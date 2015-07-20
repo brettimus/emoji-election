@@ -6,25 +6,27 @@
 @blue  : #247ba0;
 @white : #fff;
 //  - Secondary
-@black    : #232323;
-@grey     : #686868;
-@green    : #70c1b3;
-@charcoal : #50514f;
+@black      : #232323;
+@grey       : #686868;
+@green      : #70c1b3;
+@charcoal   : #50514f;
+// - Variants
+@blue-light : lighten(@blue, 12%);
+@red-light  : lighten(@red, 8%);
 
-@display        : "Jacques Francois Shadow", cursive;
-@serif          : "Jacques Francois Shadow", serif;
+
+@serif          : "Jacques Francois Shadow", serif;   // defunct
 @slab           : "Roboto Slab", serif;
 @sans-serif     : 'Source Sans Pro', sans-serif;
-@sans-serif-alt : 'Text Me One', sans-serif;
+@sans-serif-alt : 'Text Me One', sans-serif;         // defunct
 
 @light  : 300;
 @normal : 400;
 @semi   : 600;
 @heavy  : 900;
 
-@sidebar-bg    : @blue;
+@topbar-bg    : @blue;
 @link-color    : @red;
-@tagline-color : rgb(176, 202, 219);
 @tagline-color : darken(@white, 10%);
 
 * {
@@ -62,132 +64,24 @@ a {
     padding: 0;
 }
 
-.header {
-    text-align: center;
-    top: auto;
-    margin: 3em auto;
-}
-
-.topbar {
-    background: @sidebar-bg;
-    color: @white;
-}
-
-.brand-img {
-    display: block;
-    height: 120px;
-    margin: -30px auto 0 auto;
-}
-.brand-title,
-.brand-tagline {
-    margin: 0;
-}
-.brand-title {
-    font-family: @slab;
-    letter-spacing: .08em;
-    padding-bottom: 32px;
-    text-transform: uppercase;
-
-    small {
-        font-family: @sans-serif;
-        font-size: .7em;
-        font-weight: @light;
-        letter-spacing: .02em;
-    }
-}
-
-.brand-title-emoji {
-    padding-bottom: 0;
-}
-
-.brand-tagline {
-    font-weight: 300;
-    color: @tagline-color;
-    a {
-        color: lighten(@red, 10%);
-    }
-}
-
-.nav-list {
-    margin: 0;
-    padding: 20px 0 20px 0;
-    list-style: none;
-}
-.nav-item {
-    display: inline-block;
-    *display: inline;
-    zoom: 1;
-}
-.nav-item {
-    font-family: @sans-serif;
-
-    a {
-        background: @red;
-        border: 2px solid @white;
-        color: @white;
-        font-size: 1.5em;
-        letter-spacing: 0.05em;
-        margin-top: 1em;
-        text-transform: uppercase;
-        
-        &:hover,
-        &:focus {
-            border: 2px solid darken(@white, 10%);
-            text-decoration: none;            
-        }
-    }
-    &.nav-item-secondary {
-
-        a {
-            background: transparent;
-            border-color: darken(@white, 6%);
-            color: @white;
-
-            &:hover,
-            &:focus {
-                border-color: @white;
-                background: @white;
-                color: @blue;
-            }
-        }
-    }
-}
-
 
 
 // ipad mini
 @media only screen 
   and (min-width: 480px) {
 
-  .topbar {
-    min-height: 200px;
-    padding: 60px;
-  }
-  .brand-title {
-    font-size: 2.4em;
-  }
 }
 
 // desktop
 @media only screen 
   and (min-width: 768px) {
     
-  .topbar {
-    min-height: 220px;
-  }
-  .brand-title {
-    font-size: 2.9em;
-  }
 
 }
 
 // desktop - bigggg
 @media only screen 
   and (min-width: 1000px) {
-    
-  // .topbar {
-  // }
-
 
 
 }

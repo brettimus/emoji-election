@@ -7,6 +7,12 @@
     letter-spacing: 0.05em;
     margin-bottom: 1.8em;
     padding: 0.4em 0;
+
+    small {
+        color: lighten(@black, 10%);
+        font-weight: @light;
+        letter-spacing: 0.02em;
+    }
 }
 
 .content {
@@ -22,10 +28,10 @@
 
 .vote-icon {
     border-radius: 50px;
-    color: @charcoal;
+    color: @green;
     float: left;
     margin-right: 1.5em;
-    opacity: .5;
+    // opacity: .72;
 }
 
 .vote-title {
@@ -35,7 +41,7 @@
 
     small {
         font-size: .8em;
-        font-weight: @normal;
+        font-weight: @light;
         opacity: .8;
     }
 
@@ -50,11 +56,6 @@
             color: @green;
         }
     }
-}
-
-.vote-emoji {
-    font-weight: 400; // without this, emoji won't render in chrome
-                      // see: https://code.google.com/p/chromium/issues/detail?id=465066
 }
 
 .vote-meta {

@@ -2,9 +2,9 @@
     <div class="topbar pure-u-1">
         <div class="header">
             <h1 class="brand-title brand-title-emoji">
-                <span class="vote-emoji">🇺🇸</span>
+                <span class="text-emoji">🇺🇸</span>
                 <i class="fa fa-plus"></i>
-                <span class="vote-emoji">😁</span>
+                <span class="text-emoji">😁</span>
             </h1>
             <h1 class="brand-title" style="font-weight:400;">
                 <br>
@@ -13,7 +13,7 @@
                 Emoji
             </h1>
             <h2 class="brand-tagline">
-                Tweet an emoji and a candidate <a href="//twitter.com/emojielection">@emojielection</a>
+                Tweet an emoji and a candidate at <a href="//twitter.com/emojielection">emojielection</a>
                 <br>
                 To vote for the next US President
             </h2>
@@ -21,7 +21,7 @@
             <nav class="nav">
                 <ul class="nav-list">
                     <li class="nav-item">
-                        <a class="pure-button js-how-to-vote" href="#vote">I Want to Vote</a>
+                        <a class="pure-button js-toggle-voting-instructions" href="#vote">I Want to Vote</a>
                     </li>
 
                   <!--   <li class="nav-item nav-item-secondary">
@@ -29,14 +29,34 @@
                     </li> -->
                 </ul>
             </nav>
+
+            <div class="voting-instructions animated hidden">
+                <h2>Good!</h2>
+                <div class="pure-g">
+                    <div class="pure-u-md-1-2 pure-u-1">
+                        <h3>Tweet</h3>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed minima quibusdam ullam sunt perspiciatis.
+                        </p>
+                    </div>
+                    <div class="pure-u-md-1-2 pure-u-1">
+                        <h3>Other Stuff</h3>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed minima quibusdam ullam sunt perspiciatis.
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
     <div class="content pure-u-1">
         <div>
             <div class="votes">
-                <h1 class="content-subhead">Latest Votes</h1>
-
+                <h1 class="content-subhead">
+                    Hot, Live Democracy
+                    <small>(the latest votes)</small>
+                </h1>
             </div>
 
             <div class="footer">
@@ -60,13 +80,13 @@
             </span>
 
             <h2 class="vote-title">
-                <span class="vote-emoji">
+                <span class="text-emoji">
                     {{emoji}}                  
                 </span>
                 <small>
-                    &nbsp; cast for
+                    cast for
                 </small>
-                <a class="{{party_affiliation}}" href="/results/candidate/{{candidate}}">
+                <a class="{{party_affiliation}}" href="//twitter.com/{{candidate}}"> <!-- TODO: change to results page -->
                     {{candidateName}}                               
                 </a>
             </h2>
