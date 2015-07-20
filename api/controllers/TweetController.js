@@ -25,6 +25,8 @@ module.exports = {
                    return somethingWentWrong(res);
                 }
 
+                Vote.publishCreate(vote);
+
                 res.send({
                     original_request: original_request,
                     isNew           : data.isNew,
