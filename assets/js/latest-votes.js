@@ -6,7 +6,7 @@ d3.json("/vote", function(votes) {
     votes.forEach(mungeVote);
     
     votes.sort(function(v1, v2) {
-        return v1.createdAtMoment.isBefore(v2.createdAtMoment) ? 1 : -1;
+        return v1.updatedAtMoment.isBefore(v2.updatedAtMoment) ? 1 : -1;
     }).forEach(appendVote);
 
 
@@ -23,11 +23,11 @@ d3.json("/vote", function(votes) {
 
     function mungeVote(v) {
         momentifyTimestamp(v);
-        v.createdAtPretty = v.createdAtMoment.fromNow();
+        v.updatedAtPretty = v.updatedAtMoment.fromNow();
     }
 
     function momentifyTimestamp(v) {
-        v.createdAtMoment = moment(v.createdAt);
+        v.updatedAtMoment = moment(v.updatedAt);
     }
 
     function appendVote(v, i) {
