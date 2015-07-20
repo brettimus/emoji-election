@@ -12,6 +12,7 @@ module.exports = {
         voter              : "STRING",
         voterTwitterId     : "STRING",
         candidate          : "STRING",
+        candidateName      : "STRING",
         candidateTwitterId : "STRING",
         tweetTwitterId     : "STRING",
     },
@@ -90,6 +91,7 @@ function mergeVoteWithData(vote, data) {
     vote.voterTwitterId = data.voter.twitter_id;
 
     vote.candidate          = data.candidates[0].handle;
+    vote.candidateName      = data.candidates[0].name;
     vote.candidateTwitterId = data.candidates[0].twitter_id;
 
     vote.tweetTwitterId = data.tweet_id;
