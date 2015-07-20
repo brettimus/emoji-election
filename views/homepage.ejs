@@ -26,49 +26,9 @@
 
     <div class="content pure-u-1">
         <div>
-            <div class="votes" style="display: none;">
-                <h1 class="content-subhead">Huh wha?</h1>
-
-                <section class="post">
-                    <header class="post-header">
-                        <img class="post-avatar" alt="Tilo Mitra&#x27;s avatar" height="48" width="48" src="img/common/tilo-avatar.png">
-
-                        <h2 class="post-title">How to Vote</h2>
-                    </header>
-
-                    <div class="post-description">
-                        <p>
-                            Yesterday at CSSConf, we launched Pure – a new CSS library. Phew! Here are the <a href="https://speakerdeck.com/tilomitra/pure-bliss">slides from the presentation</a>. Although it looks pretty minimalist, we’ve been working on Pure for several months. After many iterations, we have released Pure as a set of small, responsive, CSS modules that you can use in every web project.
-                        </p>
-                    </div>
-                </section>
-            </div>
-
             <div class="votes">
                 <h1 class="content-subhead">Recent Votes</h1>
-
-                <section class="vote">
-                    <header class="vote-header">
-                        <span class="vote-icon">
-                            <i class="fa fa-check-square-o fa-3x"></i>
-                        </span>
-
-                        <h2 class="vote-title">
-                            <i class="fa fa-meh-o"></i>
-                            <small>for</small>
-                            <a href="/results/candidate/tedcruz">
-                                Ted Cruz                                
-                            </a>
-                        </h2>
-
-                        <p class="vote-meta">
-                            <a class="vote-author" href="//twitter.com/rudeboot">rudeboot</a> 
-                            <span class="vote-timestamp">
-                                (3 mins ago)                                
-                            </span>
-                        </p>
-                    </header>
-                </section>
+                
             </div>
 
             <div class="footer">
@@ -82,4 +42,31 @@
             </div>
         </div>
     </div>
+</div>
+
+<div id="vote-template" style="display:none;">
+    <section class="vote">
+        <header class="vote-header">
+            <span class="vote-icon">
+                <i class="fa fa-check-square-o fa-3x"></i>
+            </span>
+
+            <h2 class="vote-title">
+                <span class="vote-emoji">
+                    {{emoji}}                    
+                </span>
+                <small>for</small>
+                <a class="{{party_affiliation}}" href="/results/candidate/{{candidate}}">
+                    {{candidate}}                               
+                </a>
+            </h2>
+
+            <p class="vote-meta">
+                <a class="vote-author" href="//twitter.com/{{voter}}">{{voter}}</a> 
+                <span class="vote-timestamp" data-created-at="{{createdAt}}">
+                    ({{createdAtPretty}})                                
+                </span>
+            </p>
+        </header>
+    </section>
 </div>

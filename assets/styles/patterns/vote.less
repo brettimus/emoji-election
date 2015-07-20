@@ -1,11 +1,26 @@
 .vote {
+    font-family: @sans-serif;
     padding-bottom: 2em;
 }
 
+.vote-icon {
+    border-radius: 50px;
+    color: @charcoal;
+    float: left;
+    margin-right: 1.5em;
+    opacity: .5;
+}
+
 .vote-title {
+    color: #444;
     font-size: 2em;
-    color: #222;
     margin-bottom: 0.2em;
+
+    .vote-emoji {
+        font-weight: 400; // without this, emoji won't render in chrome
+                          // see: https://code.google.com/p/chromium/issues/detail?id=465066
+    }
+
     small {
         font-size: .8em;
         font-weight: @normal;
@@ -24,19 +39,14 @@
         }
     }
 }
-.vote-icon {
-    border-radius: 50px;
-    color: @charcoal;
-    float: left;
-    margin-right: 1em;
-    opacity: .5;
-}
 
 .vote-meta {
     color: #959595;
     font-size: 90%;
     margin: 0;
-    // padding-top: .2em;
+    max-width: 400px;
+    padding-top: .2em;
+    padding-left: 5em;
     a {
         color: @charcoal;
     }
