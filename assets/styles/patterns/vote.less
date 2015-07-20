@@ -1,3 +1,20 @@
+.content-subhead {
+    border-bottom: 1px solid #eee;
+    color: lighten(@black, 6%);
+    font-family: @sans-serif;
+    font-size: 1.4em;
+    font-weight: @normal;
+    letter-spacing: 0.05em;
+    margin-bottom: 1.8em;
+    padding: 0.4em 0;
+}
+
+.content {
+    padding: 2em 1em 0;
+    margin: 0 auto;
+    max-width: 768px;
+}
+
 .vote {
     font-family: @sans-serif;
     padding-bottom: 2em;
@@ -14,12 +31,7 @@
 .vote-title {
     color: #444;
     font-size: 2em;
-    margin-bottom: 0.2em;
-
-    .vote-emoji {
-        font-weight: 400; // without this, emoji won't render in chrome
-                          // see: https://code.google.com/p/chromium/issues/detail?id=465066
-    }
+    margin-bottom: 0.4em;
 
     small {
         font-size: .8em;
@@ -40,14 +52,20 @@
     }
 }
 
+.vote-emoji {
+    font-weight: 400; // without this, emoji won't render in chrome
+                      // see: https://code.google.com/p/chromium/issues/detail?id=465066
+}
+
 .vote-meta {
     color: #959595;
     font-size: 90%;
+    font-weight: @light;
     margin: 0;
     max-width: 400px;
     padding-top: .2em;
     padding-left: 5.1em;
     a {
-        color: @charcoal;
+        color: lighten(@blue, 12%);
     }
 }

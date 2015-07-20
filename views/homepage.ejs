@@ -1,24 +1,32 @@
 <div id="layout" class="pure-g">
     <div class="topbar pure-u-1">
         <div class="header">
+            <h1 class="brand-title brand-title-emoji">
+                <span class="vote-emoji">🇺🇸</span>
+                <i class="fa fa-plus"></i>
+                <span class="vote-emoji">😁</span>
+            </h1>
             <h1 class="brand-title" style="font-weight:400;">
-                Democracy<small>,</small>
                 <br>
-                <small>Meet</small>
+                Democracy
+                <small>Meets</small>
                 Emoji
             </h1>
             <h2 class="brand-tagline">
-                Vote for the next US President with emoji
+                Tweet emoji and a candidate <a href="//twitter.com/emojielection">@emojielection</a>
+                <br>
+                To vote for the next US President
             </h2>
 
             <nav class="nav">
                 <ul class="nav-list">
                     <li class="nav-item">
-                        <a class="pure-button" href="#vote">Vote</a>
+                        <a class="pure-button js-how-to-vote" href="#vote">I Want to Vote</a>
                     </li>
-                    <li class="nav-item nav-item-secondary">
+
+                  <!--   <li class="nav-item nav-item-secondary">
                         <a class="pure-button" href="/results">Results</a>
-                    </li>
+                    </li> -->
                 </ul>
             </nav>
         </div>
@@ -27,7 +35,7 @@
     <div class="content pure-u-1">
         <div>
             <div class="votes">
-                <h1 class="content-subhead">Recent Votes</h1>
+                <h1 class="content-subhead">Latest Votes</h1>
 
             </div>
 
@@ -53,16 +61,21 @@
 
             <h2 class="vote-title">
                 <span class="vote-emoji">
-                    {{emoji}}                    
+                    {{emoji}}                  
                 </span>
-                <small>for</small>
+                <small>
+                    &nbsp; casted for
+                </small>
                 <a class="{{party_affiliation}}" href="/results/candidate/{{candidate}}">
                     {{candidateName}}                               
                 </a>
             </h2>
 
             <p class="vote-meta">
-                <a class="vote-author" href="//twitter.com/{{voter}}">{{voter}}</a> 
+                by
+                <a class="vote-author" href="//twitter.com/{{voter}}">
+                    @{{voter}}
+                </a> 
                 <span class="vote-timestamp" data-created-at="{{createdAt}}">
                     ({{createdAtPretty}})                                
                 </span>
