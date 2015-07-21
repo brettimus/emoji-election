@@ -33,65 +33,9 @@
             </nav>
         </div>
     </div>
-    <div class="voting-instructions-container animated hidden">
-        <div class="voting-instructions">
-            <div class="pure-g">
-                <div class="pure-u-1">
-                    <h2>
-                        <span class="heading-wrap">
-                            <span class="text-emoji">
-                                ⭐
-                            </span>
-                            Good! Voting is Good!
-                            <span class="text-emoji">
-                                ⭐
-                            </span>                        
-                        </span>
-                    </h2>
-                </div>
-                <div class="pure-u-md-1-2 pure-u-1">
-                    <h3>
-                        <span class="heading-wrap">
-                            <span class="text-emoji">
-                                🐣                            
-                            </span>
-                            <br>
-                            <b>Step One</b>
-                            <br>
-                            Get A Twitter
-                        </span>
-                    </h3>
-                    <p>
-                        You need a Twitter account to vote, so get you one.
-                    </p>
-                </div>
-                <div class="pure-u-md-1-2 pure-u-1">
-                    <h3>
-                        <span class="heading-wrap">
-                            <span class="text-emoji">
-                                🐥                            
-                            </span>
-                            <br>
-                            <b>Step Two</b>
-                            <br>
-                            Tweet a Tweet
-                        </span>
-                    </h3>
-                    <p>
-                        Tweet an emoji and the handle of 
-                        a presidential candidate at 
-                        <a href="//twitter.com/emojielection">emojielection</a>.
-                    </p>
-                    <p>
-                        <a href="#candidates">
-                            See a list of candidates here.                 
-                        </a>
-                        (Except not really because that link doesn't go anywhere.)
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
+
+    <%- partial ('voting-wizard.ejs') %>
+
     <div class="content pure-u-1">
         <div>
             <div class="votes">
@@ -114,34 +58,4 @@
     </div>
 </div>
 
-<div id="vote-template" style="display:none;">
-    <section class="vote">
-        <header class="vote-header">
-            <span class="vote-icon">
-                <i class="fa fa-check-square-o fa-3x"></i>
-            </span>
-
-            <h2 class="vote-title">
-                <span class="text-emoji">
-                    {{emoji}}                  
-                </span>
-                <small>
-                    cast for
-                </small>
-                <a class="{{party_affiliation}}" href="//twitter.com/{{candidate}}"> <!-- TODO: change to results page -->
-                    {{candidateName}}                               
-                </a>
-            </h2>
-
-            <p class="vote-meta">
-                by
-                <a class="vote-author" href="//twitter.com/{{voter}}">
-                    @{{voter}}
-                </a> 
-                <span class="vote-timestamp" data-updated-at="{{updatedAt}}">
-                    {{updatedAtPretty}}
-                </span>
-            </p>
-        </header>
-    </section>
-</div>
+<%- partial ('vote-template.ejs') %>
