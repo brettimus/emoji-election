@@ -190,13 +190,20 @@ function addClickEvent(node, handler) {
     if (!node) return;
     if (isArray(node) || isNodeList(node)) {
         Array.prototype.forEach.call(node, function(elt) {
-            elt.addEventListener("click", handler);
-            elt.addEventListener("touchend", handler);
+            _addClickEventHelper(elt, handler);
         });
     }
     else {
-        node.addEventListener("click", handler);
-        node.addEventListener("touchend", handler);
+        _addClickEventHelper(node, handler);
+    }
+}
+
+function _addClickEventHelper(elt, handler) {
+    if ("ontouchstart" in window) {
+        elt.addEventListener("touchend", handler);
+    }
+    else {
+        elt.addEventListener("click", handler);
     }
 }
 
