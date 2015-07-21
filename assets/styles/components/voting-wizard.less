@@ -19,7 +19,7 @@
 .voting-wizard-heading {
     border-bottom: none;
     margin: 0 0 .6em 0;
-    padding: .3em 0 .8em 0;
+    // padding: .3em 0 .8em 0;
     small {
         display: block;
         font-weight: @light;
@@ -38,6 +38,12 @@
     max-width: 400px;
     margin: 0 auto;
     padding: .8em 0 3em 0;
+}
+
+.voting-wizard-candidate {
+    font-family: @slab;
+    font-size: 1.8em;
+    padding: .6em 0 1.8em 0;
 }
 
 .voting-wizard-emoji {
@@ -71,6 +77,20 @@
     }
 }
 
+.voting-wizard-button-candidate {
+    background: @red;
+    border: solid 1px @white;
+    color: fadeout(@white, 10%);
+    font-weight: @light;
+    opacity: .91;
+
+    &:hover,
+    &:focus {
+        background: lighten(@red, 12%);
+        opacity: 1;
+    }
+}
+
 .voting-wizard-button-prev {
     background: @red;
     border: solid 1px @white;
@@ -84,6 +104,12 @@
         background: @red;
         opacity: 1;
     }
+}
+
+.voting-wizard-preview {
+    font-family: @sans-serif;
+    font-size: 1.4em;
+    padding: .6em 0 1.5em 0;
 }
 
 .voting-wizard-button-tweet {

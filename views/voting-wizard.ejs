@@ -5,11 +5,19 @@
                 <!-- <h1>YO FOOL THIS IS NOT READY YET. STAHP NYAW.</h1> -->
                 <div class="voting-wizard-step js-wizard-step" data-step="1">
                     <h2 class="voting-wizard-heading">
-                        Who's your a Candidate?
+                        Your Candidate
                         <small>
-                            Choose a candidate
+                            This is randomly selected, I promise
                         </small>
                     </h2>
+                    <div class="voting-wizard-form voting-wizard-form-candidate">
+                        <div class="voting-wizard-candidate" 
+                            data-candidate-handle></div>
+
+                        <button class="pure-button pure-button-secondary voting-wizard-button-candidate" data-random-candidate>
+                            <i class="fa fa-refresh"></i> Give me a new candidate
+                        </button>
+                    </div>
                     <button class="pure-button pure-button-secondary voting-wizard-button"
                             data-next-step="2">
                         Next
@@ -33,6 +41,7 @@
                         <span class="voting-wizard-emoji">😐</span>
                         <span class="voting-wizard-emoji">💩</span>
                     </div>
+
                     <button class="pure-button pure-button-secondary voting-wizard-button voting-wizard-button-prev"
                             data-prev-step="1">
                             Back
@@ -41,9 +50,8 @@
                             data-next-step="3">
                         Next
                     </button>
-                    <p class="voting-wizard-progress">2 of 3</p>
 
-                    <br>
+                    <p class="voting-wizard-progress">2 of 3</p>
 
                 </div>
                 <div class="voting-wizard-step hidden js-wizard-step" data-step="3">
@@ -54,20 +62,21 @@
                         </small>
                     </h2>
                     <div class="voting-wizard-preview">
-                        
+                        You're about to cast a 
+                        <span class="voting-wizard-preview-emoji"></span>
+                        vote for
+                        <span class="voting-wizard-preview-candidate"></span> 
+                        on Twitter.
                     </div>
-
-                    <small>Reminder: You must have a Twitter to vote</small>
-                    <br><br>
 
                     <button class="pure-button pure-button-secondary voting-wizard-button voting-wizard-button-prev"
                             data-prev-step="2">
-                            Back
+                            Nah, Thanks
                     </button>
                     <a id="vote-wizard-link" class="pure-button pure-button-secondary voting-wizard-button">
-                        Cast My Vote!
+                        I Know, I'm Ready!
                     </a>
-                    <p class="voting-wizard-progress">3 of 3</p>
+                    <p class="voting-wizard-progress">3 of 3 - Almost there!</p>
                 </div>
             </div>
         </div>
