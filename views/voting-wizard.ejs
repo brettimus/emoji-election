@@ -2,9 +2,8 @@
     <div class="voting-wizard">
         <div class="pure-g">
             <div class="pure-u-1">
-                <h1>YO FOOL THIS IS NOT READY YET. STAHP NYAW.</h1>
+                <!-- <h1>YO FOOL THIS IS NOT READY YET. STAHP NYAW.</h1> -->
                 <div class="voting-wizard-step js-wizard-step" data-step="1">
-                    <p class="voting-wizard-progress">1 of 3</p>
                     <h2 class="voting-wizard-heading">
                         Who's your a Candidate?
                         <small>
@@ -15,16 +14,25 @@
                             data-next-step="2">
                         Next
                     </button>
+                    <p class="voting-wizard-progress">1 of 3</p>
                 </div>
                 <div class="voting-wizard-step hidden js-wizard-step" data-step="2">
-                    <p class="voting-wizard-progress">2 of 3</p>
                     <h2 class="voting-wizard-heading">
                         What's your Emoji-Vote?
                         <small>
                             Select up to two emoji
                         </small>
                     </h2>
-
+                    <div class="voting-wizard-form voting-wizard-form-emoji">
+                        <span class="voting-wizard-emoji">😁</span>
+                        <span class="voting-wizard-emoji">💰</span>
+                        <span class="voting-wizard-emoji">😻</span>
+                        <span class="voting-wizard-emoji">😞</span>
+                        <span class="voting-wizard-emoji">🎉</span>
+                        <span class="voting-wizard-emoji">😱</span>
+                        <span class="voting-wizard-emoji">😐</span>
+                        <span class="voting-wizard-emoji">💩</span>
+                    </div>
                     <button class="pure-button pure-button-secondary voting-wizard-button voting-wizard-button-prev"
                             data-prev-step="1">
                             Back
@@ -33,11 +41,12 @@
                             data-next-step="3">
                         Next
                     </button>
+                    <p class="voting-wizard-progress">2 of 3</p>
+
                     <br>
 
                 </div>
                 <div class="voting-wizard-step hidden js-wizard-step" data-step="3">
-                    <p class="voting-wizard-progress">3 of 3</p>
                     <h2 class="voting-wizard-heading">
                         Get ready to tweet
                         <small>
@@ -58,6 +67,7 @@
                     <a id="vote-wizard-link" class="pure-button pure-button-secondary voting-wizard-button">
                         Cast My Vote!
                     </a>
+                    <p class="voting-wizard-progress">3 of 3</p>
                 </div>
             </div>
         </div>

@@ -1,9 +1,39 @@
-// Click button to summon wizard
 var votingButton = document.querySelector("[data-toggle='voting-wizard']");
 var nextButton   = document.querySelectorAll("[data-next-step]");
 var prevButton   = document.querySelectorAll("[data-prev-step]");
 
+var emojiForm    = document.querySelector(".voting-wizard-form-emoji");
+
+// Toggle Wizard
 addClickEvent(votingButton, toggleVotingWizard);
+
+// Handle Wizard Step Changes
+addClickEvent(nextButton, votingWizardNext);
+addClickEvent(prevButton, votingWizardPrev);
+
+// Select Emoji
+addClickEvent(emojiForm, selectEmoji);
+
+function selectEmoji(evt) {
+    var selClass = "selected";
+    var emoji = evt.target;
+    var parent = emoji.parentElement;
+    var selectedCount = parent.querySelectorAll(".selected").length;
+
+    if (hasClass(emoji, selClass)) {
+        removeClass(emoji, selClass);
+        return;
+    }
+
+    if (selectedCount === 2) {
+        return;
+    }
+
+    addClass(emoji, selClass);
+
+
+    // debugger;
+}
 
 function toggleVotingWizard(evt) {
     console.log(evt);
@@ -16,9 +46,6 @@ function toggleVotingWizard(evt) {
     }
 }
 
-// Handle Step Changes
-addClickEvent(nextButton, votingWizardNext);
-addClickEvent(prevButton, votingWizardPrev);
 
 function votingWizardNext(evt) {
     var button = evt.target;
@@ -56,20 +83,58 @@ function votingWizardPrev(evt) {
 }
 
 function buildTweetLink() {
-    var text = "Testing 123\n";
-    var bot = "emojielection";
-    var eePage = encodeURIComponent("http://emojifor.us/president");
+
+    var text = buildTweetText();
+
     var baseUrl = "https://twitter.com/intent/tweet?text={{text}}&url={{url}}&via={{bot}}";
     var urlTemplate = new BooTemplate(baseUrl);
+
+    var bot = "emojielection";
+    var homePage = encodeURIComponent("http://emojifor.us/president");
+
     var url = urlTemplate.compile({
         text: text,
         bot: bot,
-        url: eePage,
+        url: homePage,
     });
 
     document.getElementById("vote-wizard-link").href = url;
 }
 
+function buildTweetText() {
+    var template = "I vote {{emoji}} for @{{candidate}}!";
+    return (new BooTemplate(template)).compile({
+        candidate: getCandidateSelection(),
+        emoji    : getEmojiSelection(),
+    });
+}
+
+
+function getCandidateSelection() {
+    return "rudeboot";
+}
+function getEmojiSelection() {
+    var selected = document.querySelectorAll(".voting-wizard-emoji.selected");
+
+    if (selected.length === 0) {
+        return getRandomEmoji();
+    }
+
+    return Array.prototype
+        .slice.call(selected, 0, 2)
+        .reduce(function(res, elt) {
+            return res + elt.innerText;
+        }, "");
+
+}
+function getRandomEmoji() {
+    var emoji = emojiOptions();
+    var i = Math.floor(Math.random()*emoji.length);
+    return emoji[i];
+}
+function emojiOptions() {
+    return "😁 😻 💩 🇺🇸 🙈 😞 😱 🎉 💰 💸 🚫 😐 😎 😨".split(" ");
+}
 
 // Utilities
 function getStep(elt) {
@@ -126,6 +191,12 @@ function getParentStepElt(elt) {
         elt = elt.parentElement;
     } while (elt.parentElement);
 }
+
+// EMOJI
+
+// DOM utilities
+
+// General Utilities
 
 function isArray(o) {
     return Object.prototype.toString.call(o) === "[object Array]";
