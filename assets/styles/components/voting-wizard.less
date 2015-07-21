@@ -13,25 +13,57 @@
 }
 
 .voting-wizard-step {
-    .voting-wizard-heading {
-        border-bottom: none;
-        margin: 0 0 .6em 0;
-        padding: .3em 0 .8em 0;
-    }
-    h3 {
-        font-family: @sans-serif;
-        font-size: 1.3em;
+    position: relative; // NOT IN USE - could be useful though
+}
+
+.voting-wizard-heading {
+    border-bottom: none;
+    margin: 0 0 .6em 0;
+    padding: .3em 0 .8em 0;
+    small {
+        display: block;
         font-weight: @light;
     }
-    p {
-        font-family: @slab;
-        font-weight: @light;
-        padding: 0 .4em;
+}
+
+.voting-wizard-progress {
+    font-family: @slab;
+    font-weight: @light;
+    opacity: .9;
+    padding: 0;
+    margin: 0;
+}
+
+.voting-wizard-button {
+    background: @white;
+    border: solid 1px transparent;
+    color: @red;
+    font-family: @sans-serif;
+
+    &:hover,
+    &:focus {
+        background: @white;
+        text-decoration: none;
     }
-    a {
-        color: @white;
-        text-decoration: underline;
+}
+
+.voting-wizard-button-prev {
+    background: @red;
+    border: solid 1px @white;
+    box-sizing: border-box;
+    color: @white;
+    font-weight: @light;
+    opacity: .91;
+
+    &:hover,
+    &:focus {
+        background: @red;
+        opacity: 1;
     }
+}
+
+.voting-wizard-button-tweet {
+
 }
 
 // desktop
