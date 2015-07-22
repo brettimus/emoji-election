@@ -30,17 +30,19 @@ module.exports = {
         .populate("votes")
         .populate("tweets")
         .then(function(user) {
+
             // IMPORTANT!!!
             // TODO - move metaData mutations to vote method..
             //      - it makes sense to do all metaData mutations in the same spot...
+
             var userVotes = user.votes;
             var metaData = {
                 userInitialVotesCount: userVotes.length,
-                userUpdatingVote: userVotes.some(function(v) { return v.candidateTwitterId === candidateTwitterId; }),
+                userUpdatingVote: userVotes.some(function(v) { return v.candidateTwitterId === candidateTwitterId.toString(); }),
             };
 
-            user.tweets.add(tweet.id);
-            user.save(function(err) {
+            user.tweets.add(tweet);
+            user.save(function(err, user) {
                 next(err, user, tweet, metaData);
             });
 

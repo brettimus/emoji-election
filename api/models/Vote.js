@@ -28,7 +28,7 @@ module.exports = {
         var data = tweet.data;
 
         Vote.findOrCreate({
-            userId            : user.id,
+            user            : user.id,
             candidateTwitterId: data.candidates[0].twitter_id,
         })
         .then(onVoteCreate)
@@ -38,14 +38,21 @@ module.exports = {
 
         function onVoteCreate(vote) {
 
-            associateUser(afterAssociations);
+            associateUser(onUserSave);
 
             function associateUser(callback) {
-                user.votes.add(vote); // TODO: Possibly remove similar votes?
-                user.save(callback);
+                if (user.votes.some(function(v) { return v.id === vote.id; })) {
+                    process.nextTick(function() {
+                        callback(null);
+                    });
+                }
+                else {
+                    user.votes.add(vote.id);
+                    user.save(callback);
+                }
             }
 
-            function afterAssociations(err) {
+            function onUserSave(err) {
                 if (err) {
                     console.error("Error creating vote associations", err);
                     return next(err);

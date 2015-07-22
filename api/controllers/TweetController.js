@@ -40,7 +40,7 @@ module.exports = {
                         userUpdatingVote     : metaData.userUpdatingVote,
                         similarVoteCount     : metaData.similarVoteCount,
                         isFirstVote          : (metaData.userInitialVotesCount === 0),
-                        isNew                : metaData.userUpdatingVote,
+                        isNew                : !metaData.userUpdatingVote,
                     });
                 });
 
