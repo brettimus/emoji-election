@@ -35,7 +35,7 @@ module.exports = {
 
                     res.send({
                         original_request     : original_request,
-                        userInitialVotescount: metaData.userInitialVotesCount,
+                        userInitialVotesCount: metaData.userInitialVotesCount,
                         candidateVoteCount   : metaData.candidateVoteCount,
                         userUpdatingVote     : metaData.userUpdatingVote,
                         similarVoteCount     : metaData.similarVoteCount,
