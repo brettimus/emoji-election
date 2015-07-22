@@ -1,0 +1,1 @@
+eb logs -a && ./latest-app-logs.sh

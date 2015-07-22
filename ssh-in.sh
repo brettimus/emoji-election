@@ -1,0 +1,1 @@
+ssh -i ~/.ssh/aws-eb-emoji-for-president ec2-user@ec2-52-25-143-121.us-west-2.compute.amazonaws.com
