@@ -16,6 +16,20 @@ addClickEvent(prevButton, votingWizardPrev);
 
 // Candidate Picker
 // addClickEvent(candidateForm, selectCandidate); // unnecessary atm - just using the button;
+var insertNewCandidate = (function insertNewCandidate(candidates) {
+    // create random queue of candidates
+    candidates = d3.shuffle(candidates.slice());
+    var i = -1;
+    var candidateNode = document.querySelector("[data-candidate-handle]");
+    var currentCandidate;
+    return function(evt) {
+        i = (i + 1)% candidates.length;
+        currentCandidate = candidates[i];
+        candidateNode.dataset.candidateHandle = currentCandidate.twitter;
+        candidateNode.innerText = currentCandidate.name;
+    };
+})(window._candidates);
+
 insertNewCandidate();
 addClickEvent(randomCandidateButton, insertNewCandidate);
 
@@ -27,12 +41,7 @@ function selectCandidate(evt) {
     var elt = evt.target;
 }
 
-function insertNewCandidate(evt) {
-    var candidateNode = document.querySelector("[data-candidate-handle]");
-    var randCand = randomFromArray(window._candidates);
-    candidateNode.dataset.candidateHandle = randCand.twitter;
-    candidateNode.innerText = randCand.name;
-}
+
 
 function selectEmoji(evt) {
     var selClass = "selected";
