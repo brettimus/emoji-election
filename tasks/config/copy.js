@@ -11,7 +11,7 @@
  * Copies all directories nd files from the .tmp/public directory into a www directory.
  *
  * For usage docs see:
- * 		https://github.com/gruntjs/grunt-contrib-copy
+ * https://github.com/gruntjs/grunt-contrib-copy
  */
 module.exports = function(grunt) {
 
@@ -20,7 +20,7 @@ module.exports = function(grunt) {
 			files: [{
 				expand: true,
 				cwd: './assets',
-				src: ['**/*.!(coffee|less)'],
+				src: ['**/*.!(coffee|less|scss|sass)'],
 				dest: '.tmp/public'
 			}]
 		},

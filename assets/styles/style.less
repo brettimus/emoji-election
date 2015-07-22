@@ -1,0 +1,91 @@
+// http://coolors.co/app/50514f-f25f5c-a5d8ff-247ba0-70c1b3
+
+// Colors
+//  - Primary
+@red   : #F25f5c;
+@blue  : #247ba0;
+@white : #fff;
+//  - Secondary
+@black      : #232323;
+@grey       : #686868;
+@green      : #70c1b3;
+@charcoal   : #50514f;
+// - Variants
+@blue-light : lighten(@blue, 12%);
+@red-light  : lighten(@red, 8%);
+
+
+@slab           : "Roboto Slab", serif;
+@serif          : @slab, serif;
+@sans-serif     : 'Source Sans Pro', sans-serif;
+@sans-serif-alt : 'Text Me One', sans-serif;         // defunct
+
+@light  : 300;
+@normal : 400;
+@semi   : 600;
+@heavy  : 900;
+
+@topbar-bg    : @blue;
+@link-color    : @red;
+@tagline-color : darken(@white, 10%);
+
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+h1,
+h2 {
+    font-family: @sans-serif;
+}
+
+h3 {
+    font-weight: @light;
+}
+
+a {
+    color: @link-color;
+    text-decoration: none;    
+    &:hover,
+    &:focus {
+        text-decoration: underline;
+    }
+}
+
+small {
+    font-family: @sans-serif;
+}
+
+/* LAYOUT CSS */
+
+.pure-img-responsive {
+    max-width: 100%;
+    height: auto;
+}
+
+#layout {
+    padding: 0;
+}
+
+
+
+// ipad mini
+@media only screen 
+  and (min-width: 480px) {
+
+}
+
+// desktop
+@media only screen 
+  and (min-width: 768px) {
+    
+
+}
+
+// desktop - bigggg
+@media only screen 
+  and (min-width: 1000px) {
+
+
+}

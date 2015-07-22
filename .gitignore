@@ -99,7 +99,15 @@ lib-cov
 npm-debug.log
 
 
-
+################################################
+# Scripts
+#
+# For SSH, analyzing logs
+################################################
+*logs.sh
+ssh-in.sh
+test-voting.sh
+test_voting.json
 
 
 ################################################

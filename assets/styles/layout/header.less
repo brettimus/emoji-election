@@ -1,0 +1,131 @@
+.header {
+    text-align: center;
+    top: auto;
+    margin: 3em auto;
+}
+
+.topbar {
+    background: @topbar-bg;
+    color: @white;
+}
+
+.brand-img {
+    display: block;
+    height: 120px;
+    margin: -30px auto 0 auto;
+}
+.brand-title,
+.brand-tagline {
+    margin: 0;
+}
+.brand-title {
+    font-family: @slab;
+    letter-spacing: .08em;
+    padding-bottom: 1.6em;
+    text-transform: uppercase;
+
+    small {
+        font-family: @sans-serif;
+        font-size: .7em;
+        font-weight: @light;
+        letter-spacing: .02em;
+    }
+
+    &.brand-title-emoji {
+        padding-bottom: 0;
+    }
+}
+
+.brand-tagline {
+    color: @tagline-color;
+    font-size: 1.15em;
+    font-weight: @light;
+    a {
+        color: @red-light;
+    }
+}
+
+.nav-list {
+    margin: 0;
+    padding: 20px 0 20px 0;
+    list-style: none;
+}
+.nav-item {
+    display: inline-block;
+    *display: inline;
+    zoom: 1;
+}
+.nav-item {
+    font-family: @sans-serif;
+
+    a {
+        background: @red;
+        border: 2px solid @white;
+        color: @white;
+        font-size: 1.2em;
+        letter-spacing: 0.05em;
+        margin-top: 1em;
+        text-transform: uppercase;
+        
+        &:hover,
+        &:focus {
+            border: 2px solid darken(@white, 10%);
+            text-decoration: none;            
+        }
+    }
+    &.nav-item-secondary {
+
+        a {
+            background: transparent;
+            border-color: darken(@white, 6%);
+            color: @white;
+
+            &:hover,
+            &:focus {
+                border-color: @white;
+                background: @white;
+                color: @blue;
+            }
+        }
+    }
+}
+
+
+// ipad mini
+@media only screen 
+  and (min-width: 480px) {
+
+  .topbar {
+    min-height: 200px;
+    padding: 50px;
+  }
+  .brand-title {
+    font-size: 2.4em;
+  }
+  .brand-tagline {
+    font-size: 1.25em;    
+  }
+
+  .nav-item {
+    a {
+        font-size: 1.45em;
+    }
+  }
+}
+
+// desktop
+@media only screen 
+  and (min-width: 768px) {
+    
+  .topbar {
+    min-height: 220px;
+    padding: 60px;
+  }
+  .brand-title {
+    font-size: 2.9em;
+    padding-bottom: 1.8em;
+  }
+  .brand-tagline {
+    font-size: 1.5em;    
+  }
+}

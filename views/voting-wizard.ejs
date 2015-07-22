@@ -1,0 +1,84 @@
+<div id="voting-wizard" class="voting-wizard-container hidden" data-target="voting-wizard">
+    <div class="voting-wizard">
+        <div class="pure-g">
+            <div class="pure-u-1">
+                <!-- <h1>YO FOOL THIS IS NOT READY YET. STAHP NYAW.</h1> -->
+                <div class="voting-wizard-step js-wizard-step" data-step="1">
+                    <h2 class="voting-wizard-heading">
+                        Your Candidate
+                        <small>
+                            This is randomly selected, I promise
+                        </small>
+                    </h2>
+                    <div class="voting-wizard-form voting-wizard-form-candidate">
+                        <div class="voting-wizard-candidate" 
+                            data-candidate-handle></div>
+
+                        <button class="pure-button pure-button-secondary voting-wizard-button-candidate" data-random-candidate>
+                            <i class="fa fa-refresh"></i> Give me a new candidate
+                        </button>
+                    </div>
+                    <button class="pure-button pure-button-secondary voting-wizard-button"
+                            data-next-step="2">
+                        Next
+                    </button>
+                    <p class="voting-wizard-progress">1 of 3</p>
+                </div>
+                <div class="voting-wizard-step hidden js-wizard-step" data-step="2">
+                    <h2 class="voting-wizard-heading">
+                        What's your Emoji-Vote?
+                        <small>
+                            Select up to two emoji
+                        </small>
+                    </h2>
+                    <div class="voting-wizard-form voting-wizard-form-emoji">
+                        <span class="voting-wizard-emoji">😁</span>
+                        <span class="voting-wizard-emoji">💰</span>
+                        <span class="voting-wizard-emoji">😻</span>
+                        <span class="voting-wizard-emoji">😞</span>
+                        <span class="voting-wizard-emoji">🎉</span>
+                        <span class="voting-wizard-emoji">😱</span>
+                        <span class="voting-wizard-emoji">😐</span>
+                        <span class="voting-wizard-emoji">💩</span>
+                    </div>
+
+                    <button class="pure-button pure-button-secondary voting-wizard-button voting-wizard-button-prev"
+                            data-prev-step="1">
+                            Back
+                    </button>
+                    <button class="pure-button pure-button-secondary voting-wizard-button"
+                            data-next-step="3">
+                        Next
+                    </button>
+
+                    <p class="voting-wizard-progress">2 of 3</p>
+
+                </div>
+                <div class="voting-wizard-step hidden js-wizard-step" data-step="3">
+                    <h2 class="voting-wizard-heading">
+                        Get ready to tweet
+                        <small>
+                            Click that button, friend!
+                        </small>
+                    </h2>
+                    <div class="voting-wizard-preview">
+                        You're about to cast a 
+                        <span class="voting-wizard-preview-emoji"></span>
+                        vote for
+                        <span class="voting-wizard-preview-candidate"></span> 
+                        on Twitter.
+                    </div>
+
+                    <button class="pure-button pure-button-secondary voting-wizard-button voting-wizard-button-prev"
+                            data-prev-step="2">
+                            Nah, Thanks
+                    </button>
+                    <a id="vote-wizard-link" class="pure-button pure-button-secondary voting-wizard-button">
+                        I Know, I'm Ready!
+                    </a>
+                    <p class="voting-wizard-progress">3 of 3 - Almost there!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

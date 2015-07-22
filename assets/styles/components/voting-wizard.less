@@ -1,0 +1,123 @@
+.voting-wizard-container {
+    background: @red;
+    color: @white;
+    padding: 1.8em;
+    width: 100%;    
+}
+
+.voting-wizard {
+    margin: 0 auto;
+    max-width: 768px;
+    padding: 1.8em;
+    text-align: center;
+}
+
+.voting-wizard-step {
+    position: relative; // NOT IN USE - could be useful though
+}
+
+.voting-wizard-heading {
+    border-bottom: none;
+    margin: 0 0 .6em 0;
+    // padding: .3em 0 .8em 0;
+    small {
+        display: block;
+        font-weight: @light;
+    }
+}
+
+.voting-wizard-progress {
+    font-family: @slab;
+    font-weight: @light;
+    opacity: .8;
+    // padding: 1.2em 0 .8em 0;
+
+}
+
+.voting-wizard-form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: .8em 0 3em 0;
+}
+
+.voting-wizard-candidate {
+    font-family: @slab;
+    font-size: 1.8em;
+    padding: .6em 0 1.8em 0;
+}
+
+.voting-wizard-emoji {
+    border: solid 2px fadeout(@white, 60%);
+    border-radius: 6px;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 1.4em;
+    font-weight: @normal;
+    height: 60px;
+    margin: .3em;
+    padding-left: .12em;
+    padding-top: .6em;
+    width: 60px;
+
+    &.selected {
+        border-color: @white;
+    }
+}
+
+.voting-wizard-button {
+    background: @white;
+    border: solid 1px transparent;
+    color: @red;
+    font-family: @sans-serif;
+
+    &:hover,
+    &:focus {
+        background: @white;
+        text-decoration: none;
+    }
+}
+
+.voting-wizard-button-candidate {
+    background: @red;
+    border: solid 1px @white;
+    color: fadeout(@white, 10%);
+    font-weight: @light;
+    opacity: .91;
+
+    &:hover,
+    &:focus {
+        background: lighten(@red, 12%);
+        opacity: 1;
+    }
+}
+
+.voting-wizard-button-prev {
+    background: @red;
+    border: solid 1px @white;
+    box-sizing: border-box;
+    color: @white;
+    font-weight: @light;
+    opacity: .91;
+
+    &:hover,
+    &:focus {
+        background: @red;
+        opacity: 1;
+    }
+}
+
+.voting-wizard-preview {
+    font-family: @sans-serif;
+    font-size: 1.4em;
+    padding: .6em 0 1.5em 0;
+}
+
+.voting-wizard-button-tweet {
+
+}
+
+// desktop
+@media only screen 
+  and (min-width: 768px) {
+    
+}

@@ -32,9 +32,21 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  '/': {
+  'post /tweet/create': {
+    controller: 'Tweet',
+    action: 'create',
+    cors: {
+      origin: "*", // change to where the bot lives
+    }
+  },
+
+  '/president': {
     view: 'homepage'
-  }
+  },
+  '/results': {
+    view: 'results'
+  },
+  '/': '/president',
 
   /***************************************************************************
   *                                                                          *
