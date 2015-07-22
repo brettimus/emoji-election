@@ -46,6 +46,7 @@ function selectEmoji(evt) {
     }
 
     if (selectedCount === 2) {
+        // addSelectEmojiError
         return;
     }
 
@@ -133,7 +134,7 @@ function buildPreview() {
 }
 
 function buildTweetText() {
-    var template = "I vote {{emoji}} for @{{candidate}}!";
+    var template = "I vote {{emoji}} for @{{candidate}}. RT to do the same!";
     return (new BooTemplate(template)).compile({
         candidate: getCandidateSelection(),
         emoji    : getEmojiSelection(),
