@@ -15,74 +15,153 @@ module.exports = {
         candidateName      : "STRING",
         candidateTwitterId : "STRING",
         tweetTwitterId     : "STRING",
+
+        tweet: {
+            model: 'tweet',
+        },
+        user: {
+            model: 'user',
+        },
     },
 
-    createIfFromTweet: function(tweet, next) {
+    createIfFromUserAndTweet: function(user, tweet, metaData, next) {
         var data = tweet.data;
-        var voterTwitterId = data.voter.twitter_id;
 
-        Vote.findOne({
-            voterTwitterId: data.voter.twitter_id,
+        Vote.findOrCreate({
+            userId            : user.id,
             candidateTwitterId: data.candidates[0].twitter_id,
         })
-        .exec(createOrUpdate(data, next));
-
-    },
-
-    updateFromTweetData: function(vote, data, next) {
-
-        Vote.findOne({
-            emoji: data.vote,
-            candidateTwitterId: data.candidates[0].twitter_id,
-        })
-        .exec(function(err, similarVote) {
-            if (err) return next(err);
-
-            var isFirstVote = !similarVote;
-        
-            mergeVoteWithData(vote, data);
-
-            vote.save(function(err, vote) {
-                next(err, vote, isFirstVote);
-            });
+        .then(onVoteCreate)
+        .catch(function(err) {
+            console.error("Error creating Vote record: ", err);
         });
 
+        function onVoteCreate(vote) {
 
-    }
+            associateUser(afterAssociations);
+
+            function associateUser(callback) {
+                user.votes.add(vote); // TODO: Possibly remove similar votes?
+                user.save(callback);
+            }
+
+            function afterAssociations(err) {
+                if (err) {
+                    console.error("Error creating vote associations", err);
+                    return next(err);
+                }
+                mergeVoteWithData(vote, data);
+                vote.save(onVoteSave);
+            }
+
+            function onVoteSave(err, vote) {
+                if (err) return next(err);
+                
+                //
+                // add metadata
+                //
+                async.parallel([
+                    similarVoteCount(vote),
+                    candidateVoteCount(vote),
+                ], function(err, _results) {
+                    return next(err, vote, metaData);
+                });
+            }
+
+            function similarVoteCount(vote) {
+                return function(callback) {
+                    Vote.count({
+                        emoji             : vote.emoji,
+                        candidateTwitterId: vote.candidateTwitterId,
+                    })
+                    .then(function(count) {
+                        metaData.similarVoteCount = count;
+                        callback(null);
+                    })
+                    .catch(callback);
+                };
+            }
+
+            function candidateVoteCount(vote) {
+                return function(callback) {
+                    Vote.count({
+                        candidateTwitterId: vote.candidateTwitterId,
+                    })
+                    .then(function(count) {
+                        metaData.candidateVoteCount = count;
+                        callback(null);
+                    })
+                    .catch(callback);
+                };
+            }
+
+        }
+    },
+
+    // createIfFromTweet: function(tweet, next) {
+    //     var data = tweet.data;
+    //     var voterTwitterId = data.voter.twitter_id;
+
+    //     Vote.findOne({
+    //         voterTwitterId: data.voter.twitter_id,
+    //         candidateTwitterId: data.candidates[0].twitter_id,
+    //     })
+    //     .exec(createOrUpdate(data, next));
+
+    // },
+
+    // updateFromTweetData: function(vote, data, next) {
+
+    //     Vote.findOne({
+    //         emoji: data.vote,
+    //         candidateTwitterId: data.candidates[0].twitter_id,
+    //     })
+    //     .exec(function(err, similarVote) {
+    //         if (err) return next(err);
+
+    //         var isFirstVote = !similarVote;
+        
+    //         mergeVoteWithData(vote, data);
+
+    //         vote.save(function(err, vote) {
+    //             next(err, vote, isFirstVote);
+    //         });
+    //     });
+    // }
 };
 
-function createOrUpdate(data, next) {
-    // Scopes our db query callback to the tweet data and req callback (next)
-    return function(err, vote) {
-            if (err) return next(err);
+// function createOrUpdate(data, next) {
+//     // Scopes our db query callback to the tweet data and req callback (next)
+//     return function(err, vote) {
+//             if (err) return next(err);
 
-            if (vote) {
-                Vote.updateFromTweetData(vote, data, function(err, modVote, isFirstVote) {
+//             if (vote) {
+//                 Vote.updateFromTweetData(vote, data, function(err, modVote, isFirstVote) {
 
-                    next(err, vote, {
-                        isNew: false,
-                        isFirstVote: isFirstVote,
-                    });
+//                     next(err, vote, {
+//                         isNew: false,
+//                         isFirstVote: isFirstVote,
+//                     });
 
-                });
-            }
+//                 });
+//             }
 
-            else {
-                Vote.create().exec(function(err, vote) {
-                    if (err) return next(err);
+//             else {
+//                 Vote.create().exec(function(err, vote) {
+//                     if (err) return next(err);
 
-                    Vote.updateFromTweetData(vote, data, function(err, modVote, isFirstVote) {
+//                     Vote.updateFromTweetData(vote, data, function(err, modVote, isFirstVote) {
 
-                        next(err, vote, {
-                            isNew: true,
-                            isFirstVote: isFirstVote,
-                        });
+//                         next(err, vote, {
+//                             isNew: true,
+//                             isFirstVote: isFirstVote,
+//                         });
 
-                    });
-                });
-            }
-    };
-}
+//                     });
+//                 });
+//             }
+//     };
+// }
 
 function mergeVoteWithData(vote, data) {
     vote.emoji = data.vote;

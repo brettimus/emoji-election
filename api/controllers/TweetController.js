@@ -19,20 +19,50 @@ module.exports = {
                 return somethingWentWrong(res);
             }
 
-            Vote.createIfFromTweet(tweet, function(err, vote, data) {
+            User.createIfFromTweet(tweet, function(err, user, tweet, metaData) {
                 if (err) {
-                   sails.log("ERROR creating vote from tweet model", err);
+                   sails.log("ERROR creating user from tweet model", err);
                    return somethingWentWrong(res);
                 }
 
-                Vote.publishCreate(vote);
+                Vote.createIfFromUserAndTweet(user, tweet, metaData, function(err, vote, metaData) {
+                    if (err) {
+                       sails.log("ERROR creating vote from user and tweet", err);
+                       return somethingWentWrong(res);
+                    }
 
-                res.send({
-                    original_request: original_request,
-                    isNew           : data.isNew,
-                    isFirstVote     : data.isFirstVote
+                    Vote.publishCreate(vote);
+
+                    res.send({
+                        original_request     : original_request,
+                        userInitialVotescount: metaData.userInitialVotesCount,
+                        candidateVoteCount   : metaData.candidateVoteCount,
+                        userUpdatingVote     : metaData.userUpdatingVote,
+                        similarVoteCount     : metaData.similarVoteCount,
+                        isFirstVote          : (metaData.userInitialVotesCount === 0),
+                        isNew                : metaData.userUpdatingVote,
+                    });
                 });
+
             });
+
+
+
+            // Vote.createIfFromTweet(tweet, function(err, vote, data) {
+            //     if (err) {
+            //        sails.log("ERROR creating vote from tweet model", err);
+            //        return somethingWentWrong(res);
+            //     }
+
+            //     Vote.publishCreate(vote);
+
+            //     res.send({
+            //         original_request: original_request,
+            //         isNew           : data.isNew,
+            //         isFirstVote     : data.isFirstVote,
+
+            //     });
+            // });
         });
 
     },
