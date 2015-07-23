@@ -1,6 +1,12 @@
-var votingButton = document.querySelector("[data-toggle='voting-wizard']");
-var nextButton   = document.querySelectorAll("[data-next-step]");
-var prevButton   = document.querySelectorAll("[data-prev-step]");
+// TODO - break into modules
+
+smoothScroll.init();
+
+var showWizardButton = document.querySelector("[data-toggle='voting-wizard']");
+
+var nextButton = document.querySelectorAll("[data-next-step]");
+var prevButton = document.querySelectorAll("[data-prev-step]");
+var voteButton = document.getElementById("vote-wizard-link");
 
 var emojiForm     = document.querySelector(".voting-wizard-form-emoji");
 var candidateForm = document.querySelector(".voting-wizard-form-candidate");
@@ -8,32 +14,80 @@ var randomCandidateButton = document.querySelector("[data-random-candidate]");
 
 
 // Toggle Wizard
-addClickEvent(votingButton, toggleVotingWizard);
+addClickEvent(showWizardButton, toggleVotingWizard);
 
 // Handle Wizard Step Changes
 addClickEvent(nextButton, votingWizardNext);
 addClickEvent(prevButton, votingWizardPrev);
 
-// Candidate Generator
+// Tweet Button (very hacky...)
+addClickEvent(voteButton, goToTwitter);
+
+function goToTwitter() {
+    var url = buildTweetLink();
+    window.location = url; // yeahhhhh i'm ashamed.
+}
+
+
+// Candidate form
 var insertNewCandidate = (function insertNewCandidate(candidates) {
     // create random queue of candidates
     candidates = d3.shuffle(candidates.slice());
     var i = -1;
-    var candidateNode = document.querySelector("[data-candidate-handle]");
-    var currentCandidate;
+
     return function(evt) {
+        var currCandidate,
+            candidateName,
+            affiliation;
+
+        animateCandidateButton(randomCandidateButton);
+
         i = (i + 1) % candidates.length;
-        currentCandidate = candidates[i];
-        candidateNode.dataset.candidateHandle = currentCandidate.twitter;
-        candidateNode.innerText = currentCandidate.name;
+        currCandidate = candidates[i];
+
+        changeCandidateHandle(currCandidate);
+        changeCandidateName(currCandidate);
+        changeCandidateFirstName(currCandidate);
+        changeCandidateAffil(currCandidate);
+
     };
 })(window._candidates);
 
 insertNewCandidate();
 addClickEvent(randomCandidateButton, insertNewCandidate);
 
+function changeCandidateHandle(candidate) {
+    var handle = candidate.twitter;
+    document
+        .querySelector("[data-candidate-handle]")
+        .dataset
+        .candidateHandle = handle;
+}
+function changeCandidateName(candidate) {
+    var name = candidate.name;
+    var elts = document.querySelectorAll("[data-candidate-name]");
 
-// Emoji Picker
+    Array.prototype.forEach.call(elts, function(elt) {
+        elt.innerText = name;
+    });
+}
+function changeCandidateFirstName(candidate) {
+    var name = candidate.name;
+    var elts = document.querySelectorAll("[data-candidate-first-name]");
+
+    Array.prototype.forEach.call(elts, function(elt) {
+        elt.innerText = name.split(" ")[0];
+    });
+}
+function changeCandidateAffil(candidate) {
+    var affil = "("+candidate.affiliation.charAt(0).toUpperCase()+")";
+    document
+        .querySelector("[data-candidate-affiliation]")
+        .innerText = affil;
+}
+
+
+// Emoji Form
 addClickEvent(emojiForm, selectEmoji);
 
 function selectEmoji(evt) {
@@ -44,15 +98,31 @@ function selectEmoji(evt) {
 
     if (hasClass(emoji, selClass)) {
         removeClass(emoji, selClass);
+        removeSelectEmojiError();
         return;
     }
 
     if (selectedCount === 2) {
-        // addSelectEmojiError
+        addSelectEmojiError();
         return;
     }
 
     addClass(emoji, selClass);
+    removeSelectEmojiError();
+}
+
+function addSelectEmojiError() {
+    var elts = document.querySelectorAll("[data-emoji-form-error]");
+    Array.prototype.forEach.call(elts, function(elt) {
+        removeClass(elt, "hidden");
+    });
+}
+
+function removeSelectEmojiError() {
+    var elts = document.querySelectorAll("[data-emoji-form-error]");
+    Array.prototype.forEach.call(elts, function(elt) {
+        addClass(elt, "hidden");
+    });
 }
 
 function toggleVotingWizard(evt) {
@@ -80,9 +150,6 @@ function votingWizardNext(evt) {
         else
             hideStep(elt);
     });
-
-    buildTweetLink();
-    buildPreview();
 }
 
 function votingWizardPrev(evt) {
@@ -118,21 +185,8 @@ function buildTweetLink() {
         url: homePage,
     });
 
-    document.getElementById("vote-wizard-link").href = url;
-}
-
-function buildPreview() {
-    var preview = document.querySelector(".voting-wizard-preview");
-    var template = "You're about to give "+
-                    "{{candidate}} a vote of "+
-                    "{{emoji}} on Twitter.";
-
-    var text = (new BooTemplate(template)).compile({
-       candidate: getCandidateName(),
-       emoji    : getEmojiSelection(),
-   });
-
-    preview.innerText = text;
+    return url;
+    // document.getElementById("vote-wizard-link").href = url;
 }
 
 function buildTweetText() {
@@ -144,7 +198,7 @@ function buildTweetText() {
 }
 
 function getCandidateName() {
-    var candidate = document.querySelector("[data-candidate-handle]");
+    var candidate = document.querySelector("[data-candidate-name]");
     var name = candidate.innerText;
     return name;
 }
@@ -155,7 +209,6 @@ function getCandidateSelection() {
 }
 function getEmojiSelection() {
     var selected = document.querySelectorAll(".voting-wizard-emoji.selected");
-
     if (selected.length === 0) {
         return getRandomEmoji();
     }
@@ -221,6 +274,13 @@ function removeClass(node, className) {
         return c !== className;
     });
     node.className = modClasses.join(" ");
+}
+
+function toggleClass(node, className) {
+    if (hasClass(node, className))
+        removeClass(node, className);
+    else
+        addClass(node, className);
 }
 
 function hasClass(node, className) {

@@ -18,50 +18,104 @@
 
 .voting-wizard-heading {
     border-bottom: none;
-    margin: 0 0 .6em 0;
-    // padding: .3em 0 .8em 0;
-    small {
-        display: block;
-        font-weight: @light;
-    }
+    margin: 0;
 }
 
-.voting-wizard-progress {
-    font-family: @slab;
-    font-weight: @light;
-    opacity: .8;
-    // padding: 1.2em 0 .8em 0;
+.voting-wizard-heading-sub {
+    display: block;
+    font-weight: @light;   
+}
 
+.voting-wizard-heading-qualifier {
+    font-weight: @normal;
+    opacity: .91;
 }
 
 .voting-wizard-form {
     max-width: 400px;
     margin: 0 auto;
-    padding: .8em 0 3em 0;
+    padding: 1.5em 0;
+}
+
+.voting-wizard-form-buttons {
+    padding: 1.8em 0;
+}
+
+.voting-wizard-form-message {
+    background: fadeout(@white, 10%);
+    border-radius: 2em;
+    color: @charcoal;
+    font-family: @serif;
+    font-size: .8em;
+    margin: 1.4em .3em;
+    padding: .5em .2em;
 }
 
 .voting-wizard-candidate {
+    padding: .5em 0;
     font-family: @slab;
     font-size: 1.8em;
-    padding: .6em 0 1.8em 0;
+
+    span {
+        border-bottom: solid 2px @white;
+    }
+    .candidate-affiliation {
+        border-bottom: none;
+        font-size: .8em;
+        font-weight: @light;
+        opacity: .86;
+    }
+}
+
+.voting-wizard-candidate-msg {
+    font-family: @sans-serif;
+    font-size: 1.2em;
+    font-weight: @light;
+    margin-bottom: 1em;      
+}
+
+.voting-wizard-candidate-msg-sub {
+    display: block;
+    font-family: @sans-serif;
+    font-size: .7em;
+    font-weight: @light;
+    padding-top: .3em;
 }
 
 .voting-wizard-emoji {
-    border: solid 2px fadeout(@white, 60%);
-    border-radius: 6px;
     cursor: pointer;
     display: inline-block;
     font-size: 1.4em;
     font-weight: @normal;
     height: 60px;
-    margin: .3em;
+    margin: .2em;
     padding-left: .12em;
     padding-top: .6em;
+    position: relative;
     width: 60px;
 
-    &.selected {
-        border-color: @white;
+    &:before {
+        border: solid 2px fadeout(@white, 60%);
+        border-radius: 6px;
+        content: '';
+        left: 0; top: 0; right: 0; bottom: 0;
+        position: absolute;
+        transform: perspective( 350px ) rotateX( 0deg );
+        transition: 0.3s ease all;
     }
+
+    &.selected {
+        &:before {
+            border-color: @white;            
+            transform: perspective( 350px ) rotateX( -180deg );
+        }
+
+    }
+}
+
+.voting-wizard-button,
+.voting-wizard-button-prev {
+    margin-bottom: .6em;
 }
 
 .voting-wizard-button {
@@ -78,17 +132,11 @@
 }
 
 .voting-wizard-button-candidate {
-    background: @red;
-    border: solid 1px @white;
+    background: lighten(@red, 2%);
     color: fadeout(@white, 10%);
     font-weight: @light;
     opacity: .91;
-
-    &:hover,
-    &:focus {
-        background: lighten(@red, 12%);
-        opacity: 1;
-    }
+    position: relative;
 }
 
 .voting-wizard-button-prev {
@@ -101,23 +149,31 @@
 
     &:hover,
     &:focus {
-        background: @red;
+        background: lighten(@red, 2%);
         opacity: 1;
     }
 }
 
-.voting-wizard-preview {
-    font-family: @sans-serif;
-    font-size: 1.4em;
-    padding: .6em 0 1.5em 0;
-}
+// ipad mini
+@media only screen 
+  and (min-width: 480px) {
 
-.voting-wizard-button-tweet {
-
+   .voting-wizard-emoji {
+       font-size: 1.4em;
+       height: 65px;
+       margin: .3em;
+       padding-left: .12em;
+       padding-top: .7em;
+       width: 65px;
+   } 
 }
 
 // desktop
 @media only screen 
   and (min-width: 768px) {
     
+    .voting-wizard-candidate {
+        font-size: 2.2em;
+    }
+
 }
