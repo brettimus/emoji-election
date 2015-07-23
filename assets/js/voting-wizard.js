@@ -8,7 +8,7 @@ var nextButton = document.querySelectorAll("[data-next-step]");
 var prevButton = document.querySelectorAll("[data-prev-step]");
 var voteButton = document.getElementById("vote-wizard-link");
 
-var emojiForm     = document.querySelector(".voting-wizard-form-emoji");
+var emojiChoices     = document.querySelectorAll(".voting-wizard-emoji");
 var candidateForm = document.querySelector(".voting-wizard-form-candidate");
 var randomCandidateButton = document.querySelector("[data-random-candidate]");
 
@@ -25,7 +25,17 @@ addClickEvent(voteButton, goToTwitter);
 
 function goToTwitter() {
     var url = buildTweetLink();
-    window.location = url; // yeahhhhh i'm ashamed.
+    if (validateEmojiForm()) {
+        window.location = url; // yeahhhhh i'm ashamed.        
+    }
+}
+
+function validateEmojiForm() {
+    var selectedCount = document.querySelectorAll(".voting-wizard-emoji.selected").length;
+    if (selectedCount > 0) {
+        return true;
+    }
+    addNoEmojiError();
 }
 
 
@@ -40,15 +50,13 @@ var insertNewCandidate = (function insertNewCandidate(candidates) {
             candidateName,
             affiliation;
 
-        animateCandidateButton(randomCandidateButton);
-
         i = (i + 1) % candidates.length;
         currCandidate = candidates[i];
 
-        changeCandidateHandle(currCandidate);
-        changeCandidateName(currCandidate);
-        changeCandidateFirstName(currCandidate);
-        changeCandidateAffil(currCandidate);
+        setCandidateHandle(currCandidate);
+        setCandidateName(currCandidate);
+        setCandidateFirstName(currCandidate);
+        setCandidateAffil(currCandidate);
 
     };
 })(window._candidates);
@@ -56,14 +64,14 @@ var insertNewCandidate = (function insertNewCandidate(candidates) {
 insertNewCandidate();
 addClickEvent(randomCandidateButton, insertNewCandidate);
 
-function changeCandidateHandle(candidate) {
+function setCandidateHandle(candidate) {
     var handle = candidate.twitter;
     document
         .querySelector("[data-candidate-handle]")
         .dataset
         .candidateHandle = handle;
 }
-function changeCandidateName(candidate) {
+function setCandidateName(candidate) {
     var name = candidate.name;
     var elts = document.querySelectorAll("[data-candidate-name]");
 
@@ -71,7 +79,7 @@ function changeCandidateName(candidate) {
         elt.innerText = name;
     });
 }
-function changeCandidateFirstName(candidate) {
+function setCandidateFirstName(candidate) {
     var name = candidate.name;
     var elts = document.querySelectorAll("[data-candidate-first-name]");
 
@@ -79,7 +87,7 @@ function changeCandidateFirstName(candidate) {
         elt.innerText = name.split(" ")[0];
     });
 }
-function changeCandidateAffil(candidate) {
+function setCandidateAffil(candidate) {
     var affil = "("+candidate.affiliation.charAt(0).toUpperCase()+")";
     document
         .querySelector("[data-candidate-affiliation]")
@@ -88,7 +96,7 @@ function changeCandidateAffil(candidate) {
 
 
 // Emoji Form
-addClickEvent(emojiForm, selectEmoji);
+addClickEvent(emojiChoices, selectEmoji);
 
 function selectEmoji(evt) {
     var selClass = "selected";
@@ -98,32 +106,53 @@ function selectEmoji(evt) {
 
     if (hasClass(emoji, selClass)) {
         removeClass(emoji, selClass);
-        removeSelectEmojiError();
+        removeEmojiMaxError();
         return;
     }
 
     if (selectedCount === 2) {
-        addSelectEmojiError();
+        addEmojiMaxError();
         return;
     }
 
     addClass(emoji, selClass);
-    removeSelectEmojiError();
+    removeEmojiMaxError();
+    removeNoEmojiError();
 }
 
-function addSelectEmojiError() {
-    var elts = document.querySelectorAll("[data-emoji-form-error]");
+
+function addEmojiMaxError() {
+    var elts = document.querySelectorAll("[data-emoji-form-error='max']");
     Array.prototype.forEach.call(elts, function(elt) {
         removeClass(elt, "hidden");
     });
 }
 
-function removeSelectEmojiError() {
-    var elts = document.querySelectorAll("[data-emoji-form-error]");
+function removeEmojiMaxError() {
+    var elts = document.querySelectorAll("[data-emoji-form-error='max']");
     Array.prototype.forEach.call(elts, function(elt) {
         addClass(elt, "hidden");
     });
 }
+
+function addNoEmojiError() {
+    var elts = document.querySelectorAll("[data-emoji-form-error='blank']");
+    Array.prototype.forEach.call(elts, function(elt) {
+        removeClass(elt, "hidden");
+    });
+}
+
+function removeNoEmojiError() {
+    var elts = document.querySelectorAll("[data-emoji-form-error='blank']");
+    Array.prototype.forEach.call(elts, function(elt) {
+        addClass(elt, "hidden");
+    });
+}
+
+
+
+// Voting wizard transitions
+// TODO - history api? that'd be lots of work... maybe just use backbone... mehmehmeh
 
 function toggleVotingWizard(evt) {
     var elt = document.querySelector("[data-target='voting-wizard']");
@@ -171,7 +200,7 @@ function votingWizardPrev(evt) {
 
 function buildTweetLink() {
 
-    var text = buildTweetText();
+    var text = encodeURIComponent(buildTweetText());
 
     var baseUrl = "https://twitter.com/intent/tweet?text={{text}}&url={{url}}&via={{bot}}";
     var urlTemplate = new BooTemplate(baseUrl);
@@ -235,11 +264,11 @@ function getStep(elt) {
 }
 
 function hideStep(elt) {
-    addClass(elt, "hidden");
+    addClass(elt, "voting-wizard-step-hidden");
 }
 
 function showStep(elt) {
-    removeClass(elt, "hidden");
+    removeClass(elt, "voting-wizard-step-hidden");
 }
 
 function addClickEvent(node, handler) {

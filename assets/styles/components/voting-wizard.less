@@ -10,10 +10,25 @@
     max-width: 768px;
     padding: 1.8em;
     text-align: center;
+
+    transition: height .5s ease-in-out;
 }
 
 .voting-wizard-step {
-    position: relative; // NOT IN USE - could be useful though
+    opacity: 1;
+    transition: height .5s ease-in-out,
+                opacity .5s ease-in-out,
+                visibility 0s linear;
+
+    &.voting-wizard-step-hidden {
+        height: 0;
+        opacity: 0;
+        visibility: hidden;
+
+        transition: height .5s ease-in-out .5s,
+                    opacity .5s ease-in-out,
+                    visibility 0s linear;
+    }
 }
 
 .voting-wizard-heading {

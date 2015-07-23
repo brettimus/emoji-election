@@ -29,7 +29,7 @@
                         </button>                        
                     </div>
                 </div>
-                <div class="voting-wizard-step hidden js-wizard-step" data-step="2">
+                <div class="voting-wizard-step voting-wizard-step-hidden js-wizard-step" data-step="2">
                     <h2 class="voting-wizard-heading">
                         Woo! What's your emoji for 
                         <span data-candidate-first-name></span>? 
@@ -41,7 +41,7 @@
                     </h2>
                     <div class="voting-wizard-form voting-wizard-form-emoji">
 
-                        <div class="voting-wizard-form-message hidden" data-emoji-form-error>
+                        <div class="voting-wizard-form-message hidden" data-emoji-form-error="max">
                             <i class="fa fa-frown-o"></i> 
                             Sorry, friend! You may only pick 2 emoji.
                         </div>
@@ -66,7 +66,7 @@
                         <span class="voting-wizard-emoji">💰</span>
                         <span class="voting-wizard-emoji">💩</span>
 
-                        <div class="voting-wizard-form-message hidden" data-emoji-form-error>
+                        <div class="voting-wizard-form-message hidden" data-emoji-form-error="max">
                             <i class="fa fa-frown-o"></i> 
                             Sorry, buddy! You may only pick 2 emoji.
                         </div>
@@ -87,7 +87,12 @@
                             <button id="vote-wizard-link" 
                                 class="pure-button pure-button-secondary voting-wizard-button">
                                Let's Vote!
-                            </button>                            
+                            </button>
+
+                            <div class="voting-wizard-form-message hidden" data-emoji-form-error="blank">
+                                <i class="fa fa-frown-o"></i> 
+                                Oops! Select an emoji first
+                            </div>                          
                         </div>
                     </div>
                 </div>
