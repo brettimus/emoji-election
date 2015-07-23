@@ -21,6 +21,8 @@ module.exports = {
   //   connection: 'someMysqlServer'
   // },
 
+  hookTimeout: 30000,
+
   models: {
     connection: 'postgres',
   }
