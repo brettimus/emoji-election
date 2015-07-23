@@ -53,7 +53,7 @@ module.exports.connections = {
   *                                                                          *
   *                                                                          *
   ***************************************************************************/
-  postgresDev: {
+  postgres: {
     adapter: 'sails-postgresql',
     host: process.env.EFP_POSTGRES_HOST,
     port: process.env.EFP_POSTGRES_PORT,
