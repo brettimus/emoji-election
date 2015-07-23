@@ -25,7 +25,7 @@ module.exports = {
 
   models: {
     connection: 'postgres',
-    migrate: 'safe',
+    migrate: 'drop',
   }
 
   /***************************************************************************
