@@ -1,8 +1,19 @@
 .voting-wizard-container {
     background: @red;
     color: @white;
+    opacity: 1;
     padding: 1.8em;
-    width: 100%;    
+    width: 100%;
+
+    transition: opacity .5s ease-in-out,
+                visibility 0s linear;
+}
+
+.voting-wizard-container-hidden {
+    // display: none;
+    height: 0;
+    opacity: 0;
+    visibility: hidden;
 }
 
 .voting-wizard {
@@ -11,7 +22,6 @@
     padding: 1.8em;
     text-align: center;
 
-    transition: height .5s ease-in-out;
 }
 
 .voting-wizard-step {
@@ -67,17 +77,22 @@
 }
 
 .voting-wizard-candidate {
-    padding: .5em 0;
+    padding: 1em 0 .4em 0;
     font-family: @slab;
     font-size: 1.8em;
+    margin-top: .8em;
 
     span {
         border-bottom: solid 2px @white;
+        border-top: solid 2px @white;
+        padding: .2em;
     }
     .candidate-affiliation {
-        border-bottom: none;
-        font-size: .8em;
+        border: none;
+        display: block;
+        font-size: .6em;
         font-weight: @light;
+        margin-top: 1em;
         opacity: .86;
     }
 }

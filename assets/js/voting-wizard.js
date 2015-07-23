@@ -30,15 +30,6 @@ function goToTwitter() {
     }
 }
 
-function validateEmojiForm() {
-    var selectedCount = document.querySelectorAll(".voting-wizard-emoji.selected").length;
-    if (selectedCount > 0) {
-        return true;
-    }
-    addNoEmojiError();
-}
-
-
 // Candidate form
 var insertNewCandidate = (function insertNewCandidate(candidates) {
     // create random queue of candidates
@@ -53,6 +44,8 @@ var insertNewCandidate = (function insertNewCandidate(candidates) {
         i = (i + 1) % candidates.length;
         currCandidate = candidates[i];
 
+        animateCandidateElt();
+
         setCandidateHandle(currCandidate);
         setCandidateName(currCandidate);
         setCandidateFirstName(currCandidate);
@@ -63,6 +56,14 @@ var insertNewCandidate = (function insertNewCandidate(candidates) {
 
 insertNewCandidate();
 addClickEvent(randomCandidateButton, insertNewCandidate);
+
+function animateCandidateElt() {
+    var elt = document.querySelector(".voting-wizard-form-candidate.animated");
+    removeClass(elt, "jello");
+    setTimeout(function() {
+        addClass(elt, "jello");
+    });
+}
 
 function setCandidateHandle(candidate) {
     var handle = candidate.twitter;
@@ -88,12 +89,17 @@ function setCandidateFirstName(candidate) {
     });
 }
 function setCandidateAffil(candidate) {
-    var affil = "("+candidate.affiliation.charAt(0).toUpperCase()+")";
+    var affil = "("+capitalize(candidate.affiliation)+")";
     document
         .querySelector("[data-candidate-affiliation]")
         .innerText = affil;
 }
 
+
+function capitalize(str) {
+    var firstLetter = str.charAt(0).toUpperCase();
+    return firstLetter + str.slice(1);
+}
 
 // Emoji Form
 addClickEvent(emojiChoices, selectEmoji);
@@ -120,6 +126,13 @@ function selectEmoji(evt) {
     removeNoEmojiError();
 }
 
+function validateEmojiForm() {
+    var selectedCount = document.querySelectorAll(".voting-wizard-emoji.selected").length;
+    if (selectedCount > 0) {
+        return true;
+    }
+    addNoEmojiError();
+}
 
 function addEmojiMaxError() {
     var elts = document.querySelectorAll("[data-emoji-form-error='max']");
@@ -149,18 +162,18 @@ function removeNoEmojiError() {
     });
 }
 
-
-
 // Voting wizard transitions
-// TODO - history api? that'd be lots of work... maybe just use backbone... mehmehmeh
+//
+// TODO - tap into that history api? it sucks if the user hits back and isn't at their form.
+//      - that'd be lots of work... maybe just... use backbone... mehmehmeh
 
 function toggleVotingWizard(evt) {
     var elt = document.querySelector("[data-target='voting-wizard']");
-    if (hasClass(elt, "hidden")) {
-        removeClass(elt, "hidden");
+    if (hasClass(elt, "voting-wizard-container-hidden")) {
+        removeClass(elt, "voting-wizard-container-hidden");
     }
     else {
-        addClass(elt, "hidden");
+        addClass(elt, "voting-wizard-container-hidden");
     }
 }
 
