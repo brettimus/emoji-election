@@ -1,82 +1,100 @@
-<div id="voting-wizard" class="voting-wizard-container hidden" data-target="voting-wizard">
+<div id="voting-wizard" class="voting-wizard-container voting-wizard-container-hidden" data-target="voting-wizard">
     <div class="voting-wizard">
         <div class="pure-g">
             <div class="pure-u-1">
                 <!-- <h1>YO FOOL THIS IS NOT READY YET. STAHP NYAW.</h1> -->
                 <div class="voting-wizard-step js-wizard-step" data-step="1">
                     <h2 class="voting-wizard-heading">
-                        Your Candidate
-                        <small>
-                            This is randomly selected, I promise
+                        Choose your candidate
+                        <small class="voting-wizard-heading-sub">
+                            I picked one for you, but you can change it
                         </small>
                     </h2>
-                    <div class="voting-wizard-form voting-wizard-form-candidate">
+                    <div class="voting-wizard-form voting-wizard-form-candidate animated jello">
                         <div class="voting-wizard-candidate" 
-                            data-candidate-handle></div>
-
-                        <button class="pure-button pure-button-secondary voting-wizard-button-candidate" data-random-candidate>
-                            <i class="fa fa-refresh"></i> Give me a new candidate
-                        </button>
+                            data-candidate-handle>
+                            <span data-candidate-name></span>
+                            <span class="candidate-affiliation" 
+                                data-candidate-affiliation></span>
+                        </div>
                     </div>
-                    <button class="pure-button pure-button-secondary voting-wizard-button"
-                            data-next-step="2">
-                        Next
-                    </button>
-                    <p class="voting-wizard-progress">1 of 3</p>
+                    <div class="voting-wizard-form-buttons">
+                        <button class="pure-button pure-button-secondary voting-wizard-button voting-wizard-button-prev"
+                                data-random-candidate>
+                            Uh, I want a new candidate
+                        </button>
+                        <button class="pure-button pure-button-secondary voting-wizard-button"
+                                data-next-step="2">
+                            I'm ready to demoji
+                        </button>                        
+                    </div>
                 </div>
-                <div class="voting-wizard-step hidden js-wizard-step" data-step="2">
+                <div class="voting-wizard-step voting-wizard-step-hidden js-wizard-step" data-step="2">
                     <h2 class="voting-wizard-heading">
-                        What's your Emoji-Vote?
-                        <small>
-                            Select up to two emoji
+                        Woo! What's your emoji for 
+                        <span data-candidate-first-name></span>? 
+                        <small class="voting-wizard-heading-qualifier">(2 max)</small>
+                        <!-- <small></small> -->
+                        <small class="voting-wizard-heading-sub">
+                            Choose carefully, this is Democracy
                         </small>
                     </h2>
                     <div class="voting-wizard-form voting-wizard-form-emoji">
+
+                        <div class="voting-wizard-form-message hidden" data-emoji-form-error="max">
+                            <i class="fa fa-frown-o"></i> 
+                            Sorry, friend! You may only pick 2 emoji.
+                        </div>
+
                         <span class="voting-wizard-emoji">😁</span>
-                        <span class="voting-wizard-emoji">💰</span>
-                        <span class="voting-wizard-emoji">😻</span>
-                        <span class="voting-wizard-emoji">😞</span>
-                        <span class="voting-wizard-emoji">🎉</span>
-                        <span class="voting-wizard-emoji">😱</span>
                         <span class="voting-wizard-emoji">😐</span>
+                        <span class="voting-wizard-emoji">😞</span>
+                        <span class="voting-wizard-emoji">😱</span>
+
+                        <span class="voting-wizard-emoji">😻</span>
+                        <span class="voting-wizard-emoji">😾</span>
+                        <span class="voting-wizard-emoji">😿</span>
+                        <span class="voting-wizard-emoji">🙀</span>
+                        
+                        <span class="voting-wizard-emoji">🇺🇸</span>
+                        <span class="voting-wizard-emoji">🍕</span>
+                        <span class="voting-wizard-emoji">🚀</span>
+                        <span class="voting-wizard-emoji">🎲</span>
+
+                        <span class="voting-wizard-emoji">🎉</span>
+                        <span class="voting-wizard-emoji">💸</span>
+                        <span class="voting-wizard-emoji">💰</span>
                         <span class="voting-wizard-emoji">💩</span>
+
+                        <div class="voting-wizard-form-message hidden" data-emoji-form-error="max">
+                            <i class="fa fa-frown-o"></i> 
+                            Sorry, buddy! You may only pick 2 emoji.
+                        </div>
+
+                        <div class="voting-wizard-form-buttons">
+                            <div class="voting-wizard-candidate-msg">
+                                <i>
+                                    Clicking &ldquo;Vote&rdquo; will take you to Twitter.
+                                </i>
+                                <small class="voting-wizard-candidate-msg-sub">
+                                    (Don't worry, you'll be able to preview your vote before tweeting.)                            
+                                </small>
+                            </div>
+                            <button class="pure-button pure-button-secondary voting-wizard-button voting-wizard-button-prev"
+                                    data-prev-step="1">
+                                    Take me back
+                            </button>
+                            <button id="vote-wizard-link" 
+                                class="pure-button pure-button-secondary voting-wizard-button">
+                               Vote!
+                            </button>
+
+                            <div class="voting-wizard-form-message hidden" data-emoji-form-error="blank">
+                                <i class="fa fa-frown-o"></i> 
+                                Oops! Select an emoji first
+                            </div>                          
+                        </div>
                     </div>
-
-                    <button class="pure-button pure-button-secondary voting-wizard-button voting-wizard-button-prev"
-                            data-prev-step="1">
-                            Back
-                    </button>
-                    <button class="pure-button pure-button-secondary voting-wizard-button"
-                            data-next-step="3">
-                        Next
-                    </button>
-
-                    <p class="voting-wizard-progress">2 of 3</p>
-
-                </div>
-                <div class="voting-wizard-step hidden js-wizard-step" data-step="3">
-                    <h2 class="voting-wizard-heading">
-                        Get ready to tweet
-                        <small>
-                            Click that button, friend!
-                        </small>
-                    </h2>
-                    <div class="voting-wizard-preview">
-                        You're about to cast a 
-                        <span class="voting-wizard-preview-emoji"></span>
-                        vote for
-                        <span class="voting-wizard-preview-candidate"></span> 
-                        on Twitter.
-                    </div>
-
-                    <button class="pure-button pure-button-secondary voting-wizard-button voting-wizard-button-prev"
-                            data-prev-step="2">
-                            Nah, Thanks
-                    </button>
-                    <a id="vote-wizard-link" class="pure-button pure-button-secondary voting-wizard-button">
-                        I Know, I'm Ready!
-                    </a>
-                    <p class="voting-wizard-progress">3 of 3 - Almost there!</p>
                 </div>
             </div>
         </div>

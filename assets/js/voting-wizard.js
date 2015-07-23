@@ -1,38 +1,108 @@
-var votingButton = document.querySelector("[data-toggle='voting-wizard']");
-var nextButton   = document.querySelectorAll("[data-next-step]");
-var prevButton   = document.querySelectorAll("[data-prev-step]");
+// TODO - break into modules
 
-var emojiForm     = document.querySelector(".voting-wizard-form-emoji");
+smoothScroll.init();
+
+var showWizardButton = document.querySelector("[data-toggle='voting-wizard']");
+
+var nextButton = document.querySelectorAll("[data-next-step]");
+var prevButton = document.querySelectorAll("[data-prev-step]");
+var voteButton = document.getElementById("vote-wizard-link");
+
+var emojiChoices     = document.querySelectorAll(".voting-wizard-emoji");
 var candidateForm = document.querySelector(".voting-wizard-form-candidate");
 var randomCandidateButton = document.querySelector("[data-random-candidate]");
 
 
 // Toggle Wizard
-addClickEvent(votingButton, toggleVotingWizard);
+addClickEvent(showWizardButton, toggleVotingWizard);
 
 // Handle Wizard Step Changes
 addClickEvent(nextButton, votingWizardNext);
 addClickEvent(prevButton, votingWizardPrev);
 
-// Candidate Picker
-// addClickEvent(candidateForm, selectCandidate); // unnecessary atm - just using the button;
+// Tweet Button (very hacky...)
+addClickEvent(voteButton, goToTwitter);
+
+function goToTwitter() {
+    var url = buildTweetLink();
+    if (validateEmojiForm()) {
+        window.location = url; // yeahhhhh i'm ashamed.        
+    }
+}
+
+// Candidate form
+var insertNewCandidate = (function insertNewCandidate(candidates) {
+    // create random queue of candidates
+    candidates = d3.shuffle(candidates.slice());
+    var i = -1;
+
+    return function(evt) {
+        var currCandidate,
+            candidateName,
+            affiliation;
+
+        i = (i + 1) % candidates.length;
+        currCandidate = candidates[i];
+
+        animateCandidateElt();
+
+        setCandidateHandle(currCandidate);
+        setCandidateName(currCandidate);
+        setCandidateFirstName(currCandidate);
+        setCandidateAffil(currCandidate);
+
+    };
+})(window._candidates);
+
 insertNewCandidate();
 addClickEvent(randomCandidateButton, insertNewCandidate);
 
-
-// Emoji Picker
-addClickEvent(emojiForm, selectEmoji);
-
-function selectCandidate(evt) {
-    var elt = evt.target;
+function animateCandidateElt() {
+    var elt = document.querySelector(".voting-wizard-form-candidate.animated");
+    removeClass(elt, "jello");
+    setTimeout(function() {
+        addClass(elt, "jello");
+    });
 }
 
-function insertNewCandidate(evt) {
-    var candidateNode = document.querySelector("[data-candidate-handle]");
-    var randCand = randomFromArray(window._candidates);
-    candidateNode.dataset.candidateHandle = randCand.twitter;
-    candidateNode.innerText = randCand.name;
+function setCandidateHandle(candidate) {
+    var handle = candidate.twitter;
+    document
+        .querySelector("[data-candidate-handle]")
+        .dataset
+        .candidateHandle = handle;
 }
+function setCandidateName(candidate) {
+    var name = candidate.name;
+    var elts = document.querySelectorAll("[data-candidate-name]");
+
+    Array.prototype.forEach.call(elts, function(elt) {
+        elt.innerText = name;
+    });
+}
+function setCandidateFirstName(candidate) {
+    var name = candidate.name;
+    var elts = document.querySelectorAll("[data-candidate-first-name]");
+
+    Array.prototype.forEach.call(elts, function(elt) {
+        elt.innerText = name.split(" ")[0];
+    });
+}
+function setCandidateAffil(candidate) {
+    var affil = "("+capitalize(candidate.affiliation)+")";
+    document
+        .querySelector("[data-candidate-affiliation]")
+        .innerText = affil;
+}
+
+
+function capitalize(str) {
+    var firstLetter = str.charAt(0).toUpperCase();
+    return firstLetter + str.slice(1);
+}
+
+// Emoji Form
+addClickEvent(emojiChoices, selectEmoji);
 
 function selectEmoji(evt) {
     var selClass = "selected";
@@ -42,23 +112,68 @@ function selectEmoji(evt) {
 
     if (hasClass(emoji, selClass)) {
         removeClass(emoji, selClass);
+        removeEmojiMaxError();
         return;
     }
 
     if (selectedCount === 2) {
+        addEmojiMaxError();
         return;
     }
 
     addClass(emoji, selClass);
+    removeEmojiMaxError();
+    removeNoEmojiError();
 }
+
+function validateEmojiForm() {
+    var selectedCount = document.querySelectorAll(".voting-wizard-emoji.selected").length;
+    if (selectedCount > 0) {
+        return true;
+    }
+    addNoEmojiError();
+}
+
+function addEmojiMaxError() {
+    var elts = document.querySelectorAll("[data-emoji-form-error='max']");
+    Array.prototype.forEach.call(elts, function(elt) {
+        removeClass(elt, "hidden");
+    });
+}
+
+function removeEmojiMaxError() {
+    var elts = document.querySelectorAll("[data-emoji-form-error='max']");
+    Array.prototype.forEach.call(elts, function(elt) {
+        addClass(elt, "hidden");
+    });
+}
+
+function addNoEmojiError() {
+    var elts = document.querySelectorAll("[data-emoji-form-error='blank']");
+    Array.prototype.forEach.call(elts, function(elt) {
+        removeClass(elt, "hidden");
+    });
+}
+
+function removeNoEmojiError() {
+    var elts = document.querySelectorAll("[data-emoji-form-error='blank']");
+    Array.prototype.forEach.call(elts, function(elt) {
+        addClass(elt, "hidden");
+    });
+}
+
+// Voting wizard transitions
+//
+// TODO - tap into that history api? it sucks if the user hits back and isn't at their form.
+//      - that'd be lots of work... maybe just... use backbone... mehmehmeh
 
 function toggleVotingWizard(evt) {
     var elt = document.querySelector("[data-target='voting-wizard']");
-    if (hasClass(elt, "hidden")) {
-        removeClass(elt, "hidden");
+    if (hasClass(elt, "voting-wizard-container-hidden")) {
+        removeClass(elt, "voting-wizard-container-hidden");
     }
     else {
-        addClass(elt, "hidden");
+        addClass(elt, "voting-wizard-container-hidden");
     }
 }
 
@@ -77,9 +192,6 @@ function votingWizardNext(evt) {
         else
             hideStep(elt);
     });
-
-    buildTweetLink();
-    buildPreview();
 }
 
 function votingWizardPrev(evt) {
@@ -101,7 +213,7 @@ function votingWizardPrev(evt) {
 
 function buildTweetLink() {
 
-    var text = buildTweetText();
+    var text = encodeURIComponent(buildTweetText());
 
     var baseUrl = "https://twitter.com/intent/tweet?text={{text}}&url={{url}}&via={{bot}}";
     var urlTemplate = new BooTemplate(baseUrl);
@@ -115,25 +227,12 @@ function buildTweetLink() {
         url: homePage,
     });
 
-    document.getElementById("vote-wizard-link").href = url;
-}
-
-function buildPreview() {
-    var preview = document.querySelector(".voting-wizard-preview");
-    var template = "You're about to give "+
-                    "{{candidate}} a vote of "+
-                    "{{emoji}} on Twitter.";
-
-    var text = (new BooTemplate(template)).compile({
-       candidate: getCandidateName(),
-       emoji    : getEmojiSelection(),
-   });
-
-    preview.innerText = text;
+    return url;
+    // document.getElementById("vote-wizard-link").href = url;
 }
 
 function buildTweetText() {
-    var template = "I vote {{emoji}} for @{{candidate}}!";
+    var template = "I vote {{emoji}} for @{{candidate}}. RT to do the same!";
     return (new BooTemplate(template)).compile({
         candidate: getCandidateSelection(),
         emoji    : getEmojiSelection(),
@@ -141,7 +240,7 @@ function buildTweetText() {
 }
 
 function getCandidateName() {
-    var candidate = document.querySelector("[data-candidate-handle]");
+    var candidate = document.querySelector("[data-candidate-name]");
     var name = candidate.innerText;
     return name;
 }
@@ -152,7 +251,6 @@ function getCandidateSelection() {
 }
 function getEmojiSelection() {
     var selected = document.querySelectorAll(".voting-wizard-emoji.selected");
-
     if (selected.length === 0) {
         return getRandomEmoji();
     }
@@ -179,11 +277,11 @@ function getStep(elt) {
 }
 
 function hideStep(elt) {
-    addClass(elt, "hidden");
+    addClass(elt, "voting-wizard-step-hidden");
 }
 
 function showStep(elt) {
-    removeClass(elt, "hidden");
+    removeClass(elt, "voting-wizard-step-hidden");
 }
 
 function addClickEvent(node, handler) {
@@ -218,6 +316,13 @@ function removeClass(node, className) {
         return c !== className;
     });
     node.className = modClasses.join(" ");
+}
+
+function toggleClass(node, className) {
+    if (hasClass(node, className))
+        removeClass(node, className);
+    else
+        addClass(node, className);
 }
 
 function hasClass(node, className) {

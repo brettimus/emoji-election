@@ -11,6 +11,10 @@ module.exports = {
         data: {
             type: 'json',
         },
+
+        vote: {
+            model: 'vote',
+        }
     },
 
     createFromBotData: function(data, next) {
