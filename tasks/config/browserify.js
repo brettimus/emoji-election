@@ -11,9 +11,7 @@
  *    https://github.com/gruntjs/grunt-browserify
  */
 module.exports = function(grunt) {
-  console.log("HEY");
   var version = grunt.file.readJSON('package.json').version;
-  console.log("MEH");
   grunt.config.set('browserify', {
     js: {
       src : require('../pipeline').browserifyMainFile,
