@@ -21,10 +21,12 @@ module.exports = {
   //   connection: 'someMysqlServer'
   // },
 
-  hookTimeout: 30000,
+  hookTimeout: 60000,
 
   models: {
     connection: 'postgres',
+    migrate: 'drop', // MUST BE CHANGED
+
   }
 
   /***************************************************************************
