@@ -29,7 +29,7 @@
     "sails-migrations": "^2.0.7",
     "sails-postgresql": "^0.10.16",
     "twitter": "^1.2.5",
-    "us-presidential-candidates-2016": "^1.0.1"
+    "us-presidential-candidates-2016": "^1.1.0"
   },
   "scripts": {
     "debug": "node debug app.js",
