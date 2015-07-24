@@ -19,6 +19,7 @@ function loadLatestVotes(votes) {
         return v1.updatedAtMoment.isBefore(v2.updatedAtMoment) ? 1 : -1;
     }).forEach(appendVote);
 
+    setInterval(updateTimestamps, 30000);
 
     io.socket.get("/results/watch", {}, function(data) {
         console.log("Methinks we're subscribed!", data);
@@ -29,7 +30,6 @@ function loadLatestVotes(votes) {
         mungeVote(vote);
         prependVote(vote);
     });
-
 
     function mungeVote(v) {
         momentifyTimestamp(v);
@@ -82,4 +82,13 @@ function loadLatestVotes(votes) {
     }
 }
 
+function updateTimestamps() {
+    var elts = document.querySelectorAll("[data-updated-at]");
+    Array.prototype.forEach.call(elts, _updateTimestamp);
+}
+
+function _updateTimestamp(elt) {
+    var time = moment(elt.dataset.updatedAt).fromNow();
+    elt.textContent = time;
+}
 
