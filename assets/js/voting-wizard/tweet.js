@@ -37,7 +37,7 @@ function buildTweetLink() {
     var urlTemplate = new Boo(baseUrl);
 
     var bot = "emojielection";
-    var homePage = "http://emojifor.us/president";
+    var homePage = "http://demoji.co";
 
     var url = urlTemplate.compile({
         text: text,
@@ -49,7 +49,7 @@ function buildTweetLink() {
 }
 
 function buildTweetText() {
-    var template = "I vote {{emoji}} for @{{candidate}}. RT to do the same!";
+    var template = "I vote @{{candidate}} for {{emoji}}! RT to do the same.";
     return (new Boo(template)).compile({
         candidate: getCandidateSelection(),
         emoji    : getEmojiSelection(),
@@ -72,7 +72,7 @@ function getEmojiSelection() {
     var selected = document.querySelectorAll(".voting-wizard-emoji.selected");
 
     return Array.prototype
-        .slice.call(selected, 0, 2)
+        .slice.call(selected, 0, 3)
         .reduce(function(res, elt) {
             return res + elt.textContent;
         }, "");

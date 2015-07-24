@@ -26,7 +26,7 @@ function selectEmoji(evt) {
         return;
     }
 
-    if (selectedCount === 2) {
+    if (selectedCount === 3) {
         addEmojiMaxError();
         return;
     }
