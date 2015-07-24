@@ -5,5 +5,15 @@
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
 
-module.exports = {};
+module.exports = {
+    index: function(req, res) {
+        Vote.find({ limit: 76 })
+            .then(function(votes) {
+                res.send(votes);
+            })
+            .catch(function(err) {
+                res.sendStatus(500);
+            });
+    }
+};
 

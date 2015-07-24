@@ -37,7 +37,7 @@ function buildTweetLink() {
     var urlTemplate = new Boo(baseUrl);
 
     var bot = "emojielection";
-    var homePage = "http://demoji.co";
+    var homePage = "http://demoji.co/";
 
     var url = urlTemplate.compile({
         text: text,
