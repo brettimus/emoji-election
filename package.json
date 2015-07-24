@@ -34,13 +34,13 @@
   },
   "scripts": {
     "debug": "node debug app.js",
-    "start": "node app.js"
+    "start": "sails lift"
   },
   "main": "app.js",
   "repository": {
     "type": "git",
     "url": "git://github.com/brettimus/emoji-election.git"
   },
-  "author": "brettius",
+  "author": "brettimus",
   "license": ""
 }
