@@ -1,1 +1,0 @@
-cat .elasticbeanstalk/logs/latest/i-5ffc7f97/var/log/nodejs/nodejs.log
