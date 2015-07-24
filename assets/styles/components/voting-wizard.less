@@ -83,8 +83,8 @@
     margin-top: .8em;
 
     span {
-        border-bottom: solid 2px @white;
-        border-top: solid 2px @white;
+        // border-bottom: solid 2px @white;
+        // border-top: solid 2px @white;
         padding: .2em;
     }
     .candidate-affiliation {
@@ -203,6 +203,17 @@
          display: inline-block;
        }
    }
+}
+
+@media only screen 
+  and (min-width: 480px) {
+    
+    .voting-wizard-candidate {
+        span {
+            border-bottom: solid 2px @white;
+            border-top: solid 2px @white;
+        }
+    }
 }
 
 // desktop
