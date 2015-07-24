@@ -1,7 +1,17 @@
-var voteTemplateString = document.getElementById("vote-template").innerHTML;
-var voteTemplate = new BooTemplate(voteTemplateString);
+var d3 = require("d3");
+var Boo = require("boo-templates");
+var socketIO = require("./dependencies/socket.io");
+var io = require("./dependencies/sails.io")(socketIO);
+var moment = require("moment");
 
-d3.json("/vote", function(votes) {
+var voteTemplateString = document.getElementById("vote-template").innerHTML;
+var voteTemplate = new Boo(voteTemplateString);
+
+module.exports = function() {
+    d3.json("/vote", loadLatestVotes);
+};
+
+function loadLatestVotes(votes) {
     var _domVotes = document.querySelector(".votes");
     votes.forEach(mungeVote);
     
@@ -70,5 +80,6 @@ d3.json("/vote", function(votes) {
         temp.innerHTML = html;
         return temp.querySelector(".vote");
     }
-});
+}
+
 

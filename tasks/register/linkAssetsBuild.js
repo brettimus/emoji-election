@@ -1,5 +1,6 @@
 module.exports = function (grunt) {
 	grunt.registerTask('linkAssetsBuild', [
+        'browserify',
 		'sails-linker:devJsRelative',
 		'sails-linker:devStylesRelative',
 		'sails-linker:devTpl',
