@@ -7,7 +7,6 @@
 
 module.exports = {
 	create: function(req, res) {
-        sails.log.info("RECEIVED REQUEST FROM HOST: ", req.baseUrl);
 
         var data             = req.allParams(),
             original_request = data;

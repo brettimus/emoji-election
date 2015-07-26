@@ -28,6 +28,20 @@ module.exports.policies = {
 
   // '*': true,
 
+  TweetController: {
+    // "*": false,
+    create: "isBot",
+  },
+
+  VoteController: {
+    // "*": false,
+    index: true,
+  },
+
+  UserController: {
+    // "*": false,
+  },
+
   /***************************************************************************
   *                                                                          *
   * Here's an example of mapping some policies to run before a controller    *
