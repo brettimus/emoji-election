@@ -40,14 +40,9 @@ module.exports.routes = {
     }
   },
 
-  '/president': {
+  '/': {
     view: 'homepage'
   },
-  '/results': {
-    view: 'results'
-  },
-  '/': '/president',
-
   /***************************************************************************
   *                                                                          *
   * Custom routes here...                                                    *
