@@ -36,8 +36,10 @@ module.exports.routes = {
     controller: 'Tweet',
     action: 'create',
     cors: {
-      origin: "*", // change to where the bot lives
-    }
+     origin: "http://emoji-president-bot.elasticbeanstalk.com, https://emoji-president-bot.elasticbeanstalk.com",
+     credentials: false,
+     securityLevel: 1,
+   }
   },
 
   '/': {
