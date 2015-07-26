@@ -29,17 +29,7 @@ module.exports.policies = {
   // '*': true,
 
   TweetController: {
-    "*": false,
     create: "isBot",
-  },
-
-  VoteController: {
-    "*": false,
-    index: true,
-  },
-
-  UserController: {
-    "*": false,
   },
 
   /***************************************************************************

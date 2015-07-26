@@ -32,6 +32,22 @@ module.exports = {
     origin: 'http://www.demoji.co, http://demoji.co, https://www.demoji.co, https://demoji.co',
   },
 
+  policies: {
+    TweetController: {
+      "*": false,
+      create: "isBot",
+    },
+
+    VoteController: {
+      "*": false,
+      index: true,
+    },
+
+    UserController: {
+      "*": false,
+    },
+  }
+
   /***************************************************************************
    * Set the port in the production environment to 80                        *
    ***************************************************************************/
