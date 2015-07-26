@@ -15,9 +15,11 @@ function loadLatestVotes(votes) {
     var _domVotes = document.querySelector(".votes");
     votes.forEach(mungeVote);
     
-    votes.sort(function(v1, v2) {
+    votes = votes.sort(function(v1, v2) {
         return v1.updatedAtMoment.isBefore(v2.updatedAtMoment) ? 1 : -1;
-    }).forEach(appendVote);
+    }).slice(0, 5);
+
+    votes.forEach(appendVote);
 
     setInterval(updateTimestamps, 300);
 
