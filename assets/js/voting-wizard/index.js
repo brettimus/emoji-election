@@ -21,6 +21,6 @@ module.exports = function() {
 
 function showVotingWizard(evt) {
     var elt = document.querySelector("[data-target='voting-wizard']");
-    addClass(elt, "voting-wizard-container-hidden");
+    removeClass(elt, "voting-wizard-container");
 }
 
