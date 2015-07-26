@@ -26,7 +26,9 @@ module.exports = {
   models: {
     connection: 'postgres',
     migrate: 'safe',
-  }
+  },
+
+  host: "demoji.herokuapp.com"
 
   /***************************************************************************
    * Set the port in the production environment to 80                        *
