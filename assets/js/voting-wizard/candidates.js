@@ -42,9 +42,9 @@ module.exports = function() {
 function animateCandidateElt() {
     var elt = document.querySelector(".voting-wizard-form-candidate.animated");
     removeClass(elt, "jello");
-    setTimeout(function() {
+    process.nextTick(function() {
         addClass(elt, "jello");
-    }, 10);
+    });
 }
 
 function setCandidateHandle(candidate) {
