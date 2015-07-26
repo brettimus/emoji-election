@@ -28,6 +28,10 @@ module.exports = {
     migrate: 'safe',
   },
 
+  cors: {
+    origin: 'http://www.demoji.co, http://demoji.co, https://www.demoji.co, https://demoji.co',
+  }
+
   /***************************************************************************
    * Set the port in the production environment to 80                        *
    ***************************************************************************/
