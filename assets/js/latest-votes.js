@@ -19,7 +19,7 @@ function loadLatestVotes(votes) {
         return v1.updatedAtMoment.isBefore(v2.updatedAtMoment) ? 1 : -1;
     }).forEach(appendVote);
 
-    setInterval(updateTimestamps, 30000);
+    setInterval(updateTimestamps, 300);
 
     io.socket.get("/results/watch", {}, function(data) {
         console.log("Methinks we're subscribed!", data);
@@ -83,7 +83,7 @@ function loadLatestVotes(votes) {
 }
 
 function updateTimestamps() {
-    var elts = document.querySelectorAll("[data-updated-at]");
+    var elts = document.querySelectorAll("[data-updated-at]:not([data-updated-at='{{updatedAt}}'])");
     Array.prototype.forEach.call(elts, _updateTimestamp);
 }
 

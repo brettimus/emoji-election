@@ -49,7 +49,7 @@ function buildTweetLink() {
 }
 
 function buildTweetText() {
-    var template = "My vote in the Emoji Election: a {{emoji}} for @{{candidate}}. RT to do the same.";
+    var template = "My vote in the Emoji Election: a {{emoji}} for @{{candidate}}. RT to do the same!";
     return (new Boo(template)).compile({
         candidate: getCandidateSelection(),
         emoji    : getEmojiSelection(),

@@ -1,0 +1,29 @@
+<section class="vote">
+    <header class="vote-header">
+        <span class="vote-icon">
+            <i class="fa fa-check-square-o fa-3x"></i>
+        </span>
+
+        <h2 class="vote-title">
+            <span class="text-emoji">
+                {{emoji}}                  
+            </span>
+            <small>
+                cast for
+            </small>
+            <a class="{{party_affiliation}}" href="//twitter.com/{{candidate}}"> <!-- TODO: change to results page -->
+                {{candidateName}}                               
+            </a>
+        </h2>
+
+        <p class="vote-meta">
+            by
+            <a class="vote-author" href="//twitter.com/{{voter}}">
+                @{{voter}}
+            </a> 
+            <span class="vote-timestamp" data-updated-at="{{updatedAt}}">
+                {{updatedAtPretty}}
+            </span>
+        </p>
+    </header>
+</section>
