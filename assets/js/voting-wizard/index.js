@@ -6,7 +6,7 @@ var utils         = require("./utils"),
 
 module.exports = function() {
     var showWizardButton = document.querySelector("[data-toggle='voting-wizard']");
-    addClickEvent(showWizardButton, toggleVotingWizard);
+    addClickEvent(showWizardButton, showVotingWizard);
 
     require("./navigate")();
     require("./tweet")();
@@ -19,13 +19,8 @@ module.exports = function() {
 // TODO - tap into that history api? it sucks if the user hits back and isn't at their form.
 //      - that'd be lots of work... maybe just... use backbone... mehmehmeh
 
-function toggleVotingWizard(evt) {
+function showVotingWizard(evt) {
     var elt = document.querySelector("[data-target='voting-wizard']");
-    if (hasClass(elt, "voting-wizard-container-hidden")) {
-        removeClass(elt, "voting-wizard-container-hidden");
-    }
-    else {
-        addClass(elt, "voting-wizard-container-hidden");
-    }
+    addClass(elt, "voting-wizard-container-hidden");
 }
 

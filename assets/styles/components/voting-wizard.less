@@ -2,7 +2,7 @@
     background: @red;
     color: @white;
     opacity: 1;
-    padding: 1.8em;
+    padding: 1.8em 0;
     width: 100%;
 
     transition: opacity .5s ease-in-out,
@@ -19,9 +19,8 @@
 .voting-wizard {
     margin: 0 auto;
     max-width: 768px;
-    padding: 1.8em;
+    padding: 1.8em .9em;
     text-align: center;
-
 }
 
 .voting-wizard-step {
@@ -143,7 +142,7 @@
     }
 
     &.hide-mobile {
-
+        display: none;
     }
 }
 
@@ -192,26 +191,26 @@
 @media only screen 
   and (min-width: 480px) {
 
-   .voting-wizard-emoji {
-       font-size: 1.4em;
-       height: 65px;
-       margin: .3em;
-       padding-left: .12em;
-       padding-top: .7em;
-       width: 65px;
-       &.hide-mobile {
-         display: inline-block;
-       }
-   }
-}
+    .voting-wizard {
+        padding: 1.8em 1.2em;
+    }
 
-@media only screen 
-  and (min-width: 480px) {
-    
     .voting-wizard-candidate {
         span {
             border-bottom: solid 2px @white;
             border-top: solid 2px @white;
+        }
+    }
+
+    .voting-wizard-emoji {
+        font-size: 1.4em;
+        height: 65px;
+        margin: .3em;
+        padding-left: .12em;
+        padding-top: .7em;
+        width: 65px;
+        &.hide-mobile {
+          display: inline-block;
         }
     }
 }

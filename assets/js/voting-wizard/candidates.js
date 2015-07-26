@@ -44,7 +44,7 @@ function animateCandidateElt() {
     removeClass(elt, "jello");
     setTimeout(function() {
         addClass(elt, "jello");
-    });
+    }, 10);
 }
 
 function setCandidateHandle(candidate) {
