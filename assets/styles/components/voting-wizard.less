@@ -129,13 +129,16 @@
         content: '';
         left: 0; top: 0; right: 0; bottom: 0;
         position: absolute;
+
+        -webkit-transform: perspective( 350px ) rotateX( 0deg );
         transform: perspective( 350px ) rotateX( 0deg );
         transition: 0.3s ease all;
     }
 
     &.selected {
         &:before {
-            border-color: @white;            
+            border-color: @white;      
+            -webkit-transform: perspective( 350px ) rotateX( 0deg );      
             transform: perspective( 350px ) rotateX( -180deg );
         }
 

@@ -1,3 +1,3 @@
-# emoji-for-president
+# emoji-election
 
 a [Sails](http://sailsjs.org) application
