@@ -19,6 +19,10 @@ module.exports = {
 
   models: {
     connection: 'postgres',
+  },
+
+  cors: {
+    origin: 'http://www.demoji.co, http://demoji.co, https://www.demoji.co, https://demoji.co',
   }
 
 };

@@ -30,7 +30,11 @@ module.exports = {
 
   cors: {
     origin: 'http://www.demoji.co, http://demoji.co, https://www.demoji.co, https://demoji.co',
-  }
+  },
+
+  port: process.env.PORT,
+
+  host: "demoji.herokuapp.com"
 
   /***************************************************************************
    * Set the port in the production environment to 80                        *
