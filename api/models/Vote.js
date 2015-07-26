@@ -58,12 +58,12 @@ module.exports = {
                     return next(err);
                 }
                 mergeVoteWithData(vote, data);
+                vote.tweet = tweet.id;
                 vote.save(onVoteSave);
             }
 
             function onVoteSave(err, vote) {
                 if (err) return next(err);
-                
                 //
                 // add metadata
                 //
