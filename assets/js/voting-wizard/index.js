@@ -5,9 +5,7 @@ var utils         = require("./utils"),
     removeClass   = utils.removeClass;
 
 module.exports = function() {
-    var showWizardButton = document.querySelector("[data-toggle='voting-wizard']");
-    addClickEvent(showWizardButton, showVotingWizard);
-
+    require("./apparate")();
     require("./navigate")();
     require("./tweet")();
     require("./candidates")();
