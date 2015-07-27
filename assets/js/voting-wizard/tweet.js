@@ -74,6 +74,14 @@ function getEmojiSelection() {
     return Array.prototype
         .slice.call(selected, 0, 3)
         .reduce(function(res, elt) {
-            return res + elt.textContent;
+            return res + getEmojiFromElt(elt);
         }, "");
+}
+
+function getEmojiFromElt(elt) {
+    return elt.dataset.emoji;
+}
+
+function trim(str) {
+    return str.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, '');
 }

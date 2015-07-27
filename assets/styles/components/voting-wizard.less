@@ -122,6 +122,11 @@
     padding-top: .6em;
     position: relative;
     width: 60px;
+    z-index: @z2;
+
+    .text-emoji {
+        z-index: @z1;
+    }
 
     &:before {
         border: solid 2px fadeout(@white, 60%);
