@@ -17,6 +17,12 @@ module.exports = addEmojiFormEvents;
 function selectEmoji(evt) {
     var selClass = "selected";
     var emoji = evt.target;
+
+    // hack to handle chromoji. this could fail miserably.
+    if (hasClass(emoji, "chromoji")) {
+        emoji = emoji.parentElement;
+    }
+
     var parent = emoji.parentElement;
     var selectedCount = parent.querySelectorAll(".selected").length;
 
