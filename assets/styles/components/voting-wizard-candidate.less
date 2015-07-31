@@ -1,0 +1,57 @@
+.voting-wizard-candidate {
+    padding: 1em 0 .4em 0;
+    font-family: @slab;
+    font-size: 1.8em;
+    margin-top: .8em;
+
+    .candidate-name {
+
+    }
+    .candidate-affiliation {
+        font-size: .5em;
+        font-weight: @light;
+        opacity: .86;
+    }
+    .candidate-description {
+        font-family: @sans-serif;
+        font-size: .65em;
+        font-style: italic;
+        font-weight: @light;
+        margin: .4em 0 .6em 0;
+        opacity: .91;
+    }
+}
+
+.voting-wizard-candidate-message-info {
+    font-family: @sans-serif;
+    font-size: 1.2em;
+    font-weight: @light;
+    margin: 1em 0;
+}
+
+.voting-wizard-candidate-message-info-sub {
+    display: block;
+    font-family: @sans-serif;
+    font-size: .7em;
+    font-weight: @light;
+    padding-top: .3em;
+}
+
+// ipad mini
+@media only screen 
+  and (min-width: 480px) {
+    .voting-wizard-candidate {
+        span {
+            // border-bottom: solid 2px @white;
+            // border-top: solid 2px @white;
+        }
+    }
+}
+
+// desktop
+@media only screen 
+  and (min-width: 768px) {
+    .voting-wizard-candidate {
+        font-size: 2.2em;
+    }
+}

@@ -1,0 +1,58 @@
+.voting-wizard-emoji {
+    cursor: pointer;
+    display: inline-block;
+    font-size: 1.4em;
+    font-weight: @normal;
+    height: 60px;
+    margin: .2em;
+    padding-left: .12em;
+    padding-top: .6em;
+    position: relative;
+    width: 60px;
+    z-index: @z2;
+
+    .text-emoji {
+        z-index: @z1;
+    }
+
+    &:before {
+        border: solid 2px fadeout(@white, 60%);
+        border-radius: 6px;
+        content: '';
+        left: 0; top: 0; right: 0; bottom: 0;
+        position: absolute;
+
+        -webkit-transform: perspective( 350px ) rotateX( 0deg );
+        transform: perspective( 350px ) rotateX( 0deg );
+        transition: 0.3s ease all;
+    }
+
+    &.selected {
+        &:before {
+            border-color: @white;      
+            -webkit-transform: perspective( 350px ) rotateX( -180deg );      
+            transform: perspective( 350px ) rotateX( -180deg );
+        }
+
+    }
+
+    &.hide-mobile {
+        display: none;
+    }
+}
+
+// ipad mini
+@media only screen 
+  and (min-width: 480px) {
+    .voting-wizard-emoji {
+        font-size: 1.4em;
+        height: 65px;
+        margin: .3em;
+        padding-left: .12em;
+        padding-top: .7em;
+        width: 65px;
+        &.hide-mobile {
+          display: inline-block;
+        }
+    }
+}
