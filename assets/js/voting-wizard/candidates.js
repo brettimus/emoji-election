@@ -40,11 +40,15 @@ module.exports = function() {
 };
 
 function animateCandidateElt() {
-    var elt = document.querySelector(".voting-wizard-form-candidate.animated");
-    removeClass(elt, "jello");
-    process.nextTick(function() {
-        addClass(elt, "jello");
-    });
+    // pass
+}
+
+function _jello() {
+   var elt = document.querySelector(".voting-wizard-form-candidate.animated");
+   removeClass(elt, "jello");
+   process.nextTick(function() {
+       addClass(elt, "jello");
+   });
 }
 
 function setCandidateHandle(candidate) {
