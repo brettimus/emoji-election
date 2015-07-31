@@ -31,6 +31,7 @@ module.exports = function() {
             setCandidateName(currCandidate);
             setCandidateFirstName(currCandidate);
             setCandidateAffil(currCandidate);
+            // setCandidateDescription(currCandidate);
 
         };
     })();
@@ -40,11 +41,15 @@ module.exports = function() {
 };
 
 function animateCandidateElt() {
-    var elt = document.querySelector(".voting-wizard-form-candidate.animated");
-    removeClass(elt, "jello");
-    process.nextTick(function() {
-        addClass(elt, "jello");
-    });
+    // pass
+}
+
+function _jello() {
+   var elt = document.querySelector(".voting-wizard-form-candidate.animated");
+   removeClass(elt, "jello");
+   process.nextTick(function() {
+       addClass(elt, "jello");
+   });
 }
 
 function setCandidateHandle(candidate) {
@@ -74,6 +79,12 @@ function setCandidateAffil(candidate) {
     var affil = "("+capitalize(candidate.affiliation)+")";
     document
         .querySelector("[data-candidate-affiliation]")
+        .textContent = affil;
+}
+function setCandidateDescription(candidate) {
+    var affil = candidate.description;
+    document
+        .querySelector("[data-candidate-description]")
         .textContent = affil;
 }
 

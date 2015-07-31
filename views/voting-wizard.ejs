@@ -13,9 +13,11 @@
                     <div class="voting-wizard-form voting-wizard-form-candidate animated jello">
                         <div class="voting-wizard-candidate" 
                             data-candidate-handle>
-                            <span data-candidate-name></span>
-                            <span class="candidate-affiliation" 
-                                data-candidate-affiliation></span>
+                            <div class="candidate-name" data-candidate-name></div>
+                            <div class="candidate-description" data-candidate-description>
+                            </div>
+                            <div class="candidate-affiliation" 
+                                data-candidate-affiliation></div>
                         </div>
                     </div>
                     <div class="voting-wizard-form-buttons">
@@ -60,7 +62,7 @@
                             </button>
                             <button id="vote-wizard-link" 
                                 class="pure-button pure-button-secondary voting-wizard-button">
-                               Vote!
+                               Let's vote!
                             </button>
 
                             <div class="voting-wizard-form-message hidden" data-emoji-form-error="blank">
@@ -70,10 +72,10 @@
 
                             <div class="voting-wizard-candidate-message-info">
                                 <i>
-                                    Clicking &ldquo;Vote&rdquo; will take you to Twitter.
+                                    Clicking &ldquo;Let's vote&rdquo; will take you to Twitter.
                                 </i>
                                 <small class="voting-wizard-candidate-message-info-sub">
-                                    (Don't worry, you'll be able to preview your vote before tweeting.)                            
+                                   <b>Don't worry!</b> You'll get to preview your vote before tweeting it.
                                 </small>
                             </div>                        
                         </div>

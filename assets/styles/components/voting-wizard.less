@@ -1,3 +1,6 @@
+@import "./voting-wizard-candidate.less";
+@import "./voting-wizard-emoji.less";
+
 .voting-wizard-container {
     background: @red;
     color: @white;
@@ -75,85 +78,6 @@
     padding: .5em .2em;
 }
 
-.voting-wizard-candidate {
-    padding: 1em 0 .4em 0;
-    font-family: @slab;
-    font-size: 1.8em;
-    margin-top: .8em;
-
-    span {
-        // border-bottom: solid 2px @white;
-        // border-top: solid 2px @white;
-        padding: .2em;
-    }
-    .candidate-affiliation {
-        border: none;
-        display: block;
-        font-size: .6em;
-        font-weight: @light;
-        margin-top: 1em;
-        opacity: .86;
-    }
-}
-
-.voting-wizard-candidate-message-info {
-    font-family: @sans-serif;
-    font-size: 1.2em;
-    font-weight: @light;
-    margin: 1em 0;
-}
-
-.voting-wizard-candidate-message-info-sub {
-    display: block;
-    font-family: @sans-serif;
-    font-size: .7em;
-    font-weight: @light;
-    padding-top: .3em;
-}
-
-.voting-wizard-emoji {
-    cursor: pointer;
-    display: inline-block;
-    font-size: 1.4em;
-    font-weight: @normal;
-    height: 60px;
-    margin: .2em;
-    padding-left: .12em;
-    padding-top: .6em;
-    position: relative;
-    width: 60px;
-    z-index: @z2;
-
-    .text-emoji {
-        z-index: @z1;
-    }
-
-    &:before {
-        border: solid 2px fadeout(@white, 60%);
-        border-radius: 6px;
-        content: '';
-        left: 0; top: 0; right: 0; bottom: 0;
-        position: absolute;
-
-        -webkit-transform: perspective( 350px ) rotateX( 0deg );
-        transform: perspective( 350px ) rotateX( 0deg );
-        transition: 0.3s ease all;
-    }
-
-    &.selected {
-        &:before {
-            border-color: @white;      
-            -webkit-transform: perspective( 350px ) rotateX( -180deg );      
-            transform: perspective( 350px ) rotateX( -180deg );
-        }
-
-    }
-
-    &.hide-mobile {
-        display: none;
-    }
-}
-
 .voting-wizard-button,
 .voting-wizard-button-prev {
     margin-bottom: .6em;
@@ -202,33 +126,4 @@
     .voting-wizard {
         padding: 1.8em 1.2em;
     }
-
-    .voting-wizard-candidate {
-        span {
-            border-bottom: solid 2px @white;
-            border-top: solid 2px @white;
-        }
-    }
-
-    .voting-wizard-emoji {
-        font-size: 1.4em;
-        height: 65px;
-        margin: .3em;
-        padding-left: .12em;
-        padding-top: .7em;
-        width: 65px;
-        &.hide-mobile {
-          display: inline-block;
-        }
-    }
-}
-
-// desktop
-@media only screen 
-  and (min-width: 768px) {
-    
-    .voting-wizard-candidate {
-        font-size: 2.2em;
-    }
-
 }
