@@ -31,6 +31,7 @@ module.exports = function() {
             setCandidateName(currCandidate);
             setCandidateFirstName(currCandidate);
             setCandidateAffil(currCandidate);
+            // setCandidateDescription(currCandidate);
 
         };
     })();
@@ -78,6 +79,12 @@ function setCandidateAffil(candidate) {
     var affil = "("+capitalize(candidate.affiliation)+")";
     document
         .querySelector("[data-candidate-affiliation]")
+        .textContent = affil;
+}
+function setCandidateDescription(candidate) {
+    var affil = candidate.description;
+    document
+        .querySelector("[data-candidate-description]")
         .textContent = affil;
 }
 
