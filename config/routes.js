@@ -42,8 +42,26 @@ module.exports.routes = {
    }
   },
 
-  '/': {
-    view: 'homepage'
+  'get /results/all': {
+    controller: 'Results',
+    action: 'all',
+    skipAssets: true,
+  },
+
+  'get /results/emoji/:emoji': {
+    controller: 'Results',
+    action: 'emoji',
+    skipAssets: true,
+  },
+
+  'get /results/candidate/:candidate': {
+    controller: 'Results',
+    action: 'candidate',
+  },
+
+  'get /': {
+    controller: 'Home',
+    action: 'index',
   },
   /***************************************************************************
   *                                                                          *
