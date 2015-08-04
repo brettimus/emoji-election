@@ -5,6 +5,7 @@ var utils         = require("./utils"),
     removeClass   = utils.removeClass;
 
 module.exports = function() {
+    if (!document.querySelector("#voting-wizard")) return;
     require("./apparate")();
     require("./navigate")();
     require("./tweet")();

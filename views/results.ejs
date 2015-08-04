@@ -1,26 +1,30 @@
 <div id="layout" class="pure-g">
-    <div class="topbar pure-u-1">
-        <div class="header">
-            <h1 class="brand-title brand-title-emoji">
-                <span class="text-emoji">🇺🇸</span>
-                <i class="fa fa-plus"></i>
-                <span class="text-emoji">📊</span>
-            </h1>
-            <h1 class="brand-title">
-                <br>
-                Everybody is Winning
-            </h1>
-            <h2 class="brand-tagline">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae, cupiditate!
-            </h2>
-        </div>
+  <div class="topbar pure-u-1">
+    <div class="header">
+        <h1 class="brand-title brand-title-emoji">
+            <span class="text-emoji">🇺🇸</span>
+            <i class="fa fa-plus"></i>
+            <span class="text-emoji">📊</span>
+        </h1>
+        <h1 class="brand-title">
+            <br>
+            Everybody is Winning
+        </h1>
+        <h2 class="brand-tagline">
+            But let's Nate Silver this shit anyways
+        </h2>
     </div>
+  </div>
 
     <div class="content pure-u-1">
         <div>
             <div class="votes">
                 <h1 class="content-subhead">
-                    <%= count %> votes
+                    <span data-result-emoji-count></span>
+                    different emoji 
+                    <small>have been cast for</small>
+                    <span data-result-candidate-count></span>
+                    candidates
                     <!-- <small></small> -->
                 </h1>
             </div>
@@ -28,20 +32,23 @@
             <div class="results pure-g">
                 <div class="pure-u-1 pure-u-md-1-2">
                     <div class="result">
-                        <h3 class="result-heading">Most Popular Vote</h3>
                         <div class="result-body">
-                            <div class="result-emoji-lg">
-                                <span class="text-emoji">😳</span>                                
+                            <div class="result-lede result-emoji-lg">
+                                <span class="text-emoji" data-result-emoji></span>                    
                             </div>
-                        </div>                        
+                        </div>
+                        <h3 class="result-heading">is the most popular emoji</h3>                        
                     </div>
                 </div>
                 <div class="pure-u-1 pure-u-md-1-2">
                     <div class="result">
-                        <h3 class="result-heading">Most Popular Candidate</h3>
                         <div class="result-body">
-                            <div class="result-candidate-lg">Bernie Sanders</div>
-                        </div>                        
+                            <span class="result-lede result-candidate-lg"
+                                data-result-candidate>
+                                Bernie Sanders
+                            </span>
+                        </div>
+                        <h3 class="result-heading">is the most popular candidate</h3>
                     </div>
                 </div>
             </div>

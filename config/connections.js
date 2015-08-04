@@ -44,7 +44,7 @@ module.exports.connections = {
     port: '5432',
     user: '',
     password: '',
-    database: 'emoji_for_president_dev'
+    database: 'emoji_election_dev'
   },
 
   /***************************************************************************

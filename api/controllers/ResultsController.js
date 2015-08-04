@@ -11,10 +11,11 @@ module.exports = {
    * `ResultsController.index()`
    */
   index: function (req, res) {
-    Vote.count({}).exec(function(err, count) {
-      if (err) return res.view("500");
-      res.view("results", {count: count});
-    });
+    // Vote.count({}).exec(function(err, count) {
+    //   if (err) return res.view("500");
+    //   res.view("results", {count: count});
+    // });
+    res.view("results");
   },
 
   all: function (req, res) {

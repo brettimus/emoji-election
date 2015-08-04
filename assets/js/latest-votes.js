@@ -4,14 +4,15 @@ var socketIO = require("./dependencies/socket.io");
 var io = require("./dependencies/sails.io")(socketIO);
 var moment = require("moment");
 
-var voteTemplateString = document.getElementById("vote-template").innerHTML;
-var voteTemplate = new Boo(voteTemplateString);
 
 module.exports = function() {
     d3.json("/vote", loadLatestVotes);
 };
 
 function loadLatestVotes(votes) {
+    var voteTemplateString = document.getElementById("vote-template") && document.getElementById("vote-template").innerHTML;
+    if (!voteTemplateString) return;
+    var voteTemplate = new Boo(voteTemplateString);
     var _domVotes = document.querySelector(".votes");
     votes.forEach(mungeVote);
     
